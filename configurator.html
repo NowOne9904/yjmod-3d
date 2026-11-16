@@ -1,0 +1,2958 @@
+<!doctype html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="robots" content="noindex">
+<title>YJMOD 3D 서버 컨피규레이터</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@300;400;500;700&family=Barlow+Condensed:wght@500;600;700;800&display=swap">
+  <link rel="stylesheet" href="css/configurator.css">
+<style>.cats .hl{display:inline-flex;align-items:center;height:var(--head,72px);color:var(--on-dark-2,#d2d2d7);text-decoration:none;font-size:15px;font-weight:500}.cats .hl:hover{color:#fff}.menu-btn.hl-m{text-decoration:none}.qtxt{width:100%;min-height:150px;margin-top:14px;padding:12px;border:1px solid #e2e2e7;border-radius:12px;font:13px/1.6 monospace;color:#1d1d1f;background:#f7f8fb;resize:vertical}.qbtns{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin-top:14px}.qbtns a,.qbtns button{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 20px;border-radius:999px;border:1px solid #e2e2e7;background:#fff;color:#1d1d1f;font:inherit;font-size:15px;font-weight:700;text-decoration:none;cursor:pointer}.qbtns .pri{background:#3cadd4;border-color:#3cadd4;color:#fff}</style>
+</head>
+<body>
+<div id="gnb">
+<header class="site" id="site">
+  <div class="wrap">
+    <div class="brand"><a class="logo" href="https://www.yjmod.kr/" aria-label="YJMOD 홈 (yjmod.kr)"><img src="img/logo.webp" alt="YJMOD Liquid Cooling System" width="105" height="28"></a></div>
+    <nav class="main-nav" aria-label="주 메뉴"><ul class="cats"><li><a class="hl" href="https://www.yjmod.kr/">yjmod.kr 홈</a></li><li><a class="hl" href="http://www.yjmod.kr/bbs/contact_us.php">문의하기</a></li></ul></nav>
+    <div class="actions">
+      <button type="button" class="btn primary quote" id="gnbQuote">견적 요청</button>
+      <a class="menu-btn hl-m" href="https://www.yjmod.kr/">yjmod.kr</a>
+    </div>
+  </div>
+  <div class="drop" id="drop" hidden></div>
+</header>
+<div class="drop-scrim" id="scrim" hidden></div>
+<div class="mnav" id="mnav" hidden></div>
+</div>
+<div class="top" role="navigation" aria-label="구성 단계">
+  <span class="cfg-label"><b>3D</b>서버 구성 · 견적</span>
+  <ol class="steps" id="steps">
+    <li data-s="1" aria-current="step"><button type="button" data-go="1"><b>01</b><span>형태 선택</span></button></li>
+    <li data-s="2"><button type="button" data-go="2" disabled><b>02</b><span>3D 구성</span></button></li>
+    <li data-s="3"><button type="button" data-go="3" disabled><b>03</b><span>견적 요청</span></button></li>
+  </ol>
+  <a class="back" href="#pick" id="toPick" hidden>형태 다시 선택</a>
+</div>
+
+<section class="pick" id="pick" aria-labelledby="pickT">
+  <div class="pick-in">
+    <div class="sec-head"><p class="eyebrow">3D Configurator</p><h1 id="pickT">어떤 형태의 시스템이 필요하신가요?</h1><p>형태를 고르면 실제 규격 그대로의 3D 모델에서 GPU · CPU · 쿨링 · 스토리지를 직접 구성할 수 있습니다</p></div>
+    <ul class="forms">
+      <li><button type="button" class="fc" data-f="tower">
+        <span class="pic" style="background-image:url(img/tower.webp),radial-gradient(70% 60% at 50% 55%,#fff 0%,#f5f5f7 100%)" aria-hidden="true"></span>
+        <span class="tx"><span class="cat">GPU 워크스테이션</span><h2>타워형</h2><p>연구실 책상 옆에 두고 쓰는 조용한 고성능 시스템</p>
+          <dl><div><dt>규격</dt><dd>미들 · 풀 타워</dd></div><div><dt>GPU</dt><dd>최대 4장</dd></div><div><dt>쿨링</dt><dd>공냉 · 수냉</dd></div></dl>
+          <span class="go">타워형 구성하기 <i aria-hidden="true">→</i></span></span></button></li>
+      <li><button type="button" class="fc" data-f="diy">
+        <span class="pic photo" style="background-image:url(img/diy.webp)" aria-hidden="true"></span>
+        <span class="tx"><span class="cat">GPU 서버 · 조립형</span><h2>랙마운트 (조립형)</h2><p>서버실 및 데이터 센터에 설치하는 조립식 랙 서버</p>
+          <dl><div><dt>규격</dt><dd>2U · 4U · 6U</dd></div><div><dt>GPU</dt><dd>최대 4장</dd></div><div><dt>보드</dt><dd>일반 서버 보드</dd></div></dl>
+          <span class="go">조립형 구성하기 <i aria-hidden="true">→</i></span></span></button></li>
+      <li><button type="button" class="fc" data-f="bare">
+        <span class="pic photo" style="background-image:url(img/bare.webp)" aria-hidden="true"></span>
+        <span class="tx"><span class="cat">GPU 서버 · 베어본</span><h2>랙마운트 (베어본)</h2><p>서버실 및 데이터 센터에 설치하는 반제품 형태 랙 서버</p>
+          <dl><div><dt>규격</dt><dd>2U · 4U · 6U</dd></div><div><dt>GPU</dt><dd>최대 8장</dd></div><div><dt>보드</dt><dd>전용 GPU 보드</dd></div></dl>
+          <span class="go">베어본 구성하기 <i aria-hidden="true">→</i></span></span></button></li>
+    </ul>
+    <div class="pick-note"><p><b>조립형</b> · 일반 서버용 메인보드 한 장에 RAM 슬롯과 GPU 슬롯이 함께 있어, 장착할 수 있는 GPU 수가 비교적 적습니다 (최대 4장)</p><p><b>베어본</b> · 가운데에 RAM 슬롯, 뒤쪽에 별도의 GPU 슬롯 보드가 있는 반제품 구조라 더 많은 GPU를 설치할 수 있습니다 (최대 8장)</p></div>
+    <p class="disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5"/><path d="M12 7.6v.2" stroke-width="2.4"/></svg><span>본 3D 시뮬레이션과 구성은 이해를 돕기 위한 참고용으로, 실제 제품의 외형 · 부품 배치 · 사양과 다를 수 있습니다. 부품 수급, 호환성 검증, 제조사 사양 변경 등의 사유로 일부 구성이 변경될 수 있으며, 최종 사양과 금액은 담당 엔지니어의 견적서로 확정됩니다.</span></p>
+  </div>
+</section>
+
+<section class="cfg" id="cfg" hidden aria-label="3D 구성">
+  <aside class="blist" aria-label="부품 구성"><div class="bl-hd"><h3>부품 구성</h3><span id="blN">0 / 8</span></div><ol class="bl-items" id="blItems"></ol><div class="bl-ft"><p>ASSEMBLY PROGRESS <b id="blPct">0%</b></p><div class="bl-seg" id="blSeg"></div></div></aside>
+  <div class="stage">
+    <canvas id="gl" role="img" aria-label="시스템 3D 미리보기. 드래그해서 돌려 보고, 휠로 확대할 수 있습니다."></canvas>
+    <div class="stage-hd"><p class="eyebrow" id="sK"></p><h2 id="sName"></h2><p class="dims" id="sDims"></p><p class="ext-badge" id="extBadge" hidden>외부 쿨링 장치 필요 가능성</p><p class="ext-badge nova-badge" id="novaBadge" hidden>외장 라디에이터 필수 · Alphacool NexXxoS Nova 1080</p><p class="disc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5"/><path d="M12 7.6v.2" stroke-width="2.4"/></svg><span>3D 시뮬레이션은 참고용으로, 실제 제품의 외형 · 부품 배치와 다를 수 있습니다</span></p></div>
+    <button type="button" class="pwr" id="pwrBtn" aria-pressed="false" disabled title="모든 부품을 선택하면 동작을 시뮬레이션할 수 있습니다"><i><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 3v8"/><path d="M6.3 7.2a8 8 0 1 0 11.4 0"/></svg></i><span id="pwrT">전원 켜기</span></button>
+    <div class="hud" id="hud" hidden aria-live="polite"><p class="hud-st"><i></i>SYSTEM ONLINE</p><dl id="hudDl"></dl><p class="hud-note">시뮬레이션 값으로, 실제 운영 수치와 다를 수 있습니다</p></div>
+    <div class="views" role="group" aria-label="보기 각도">
+      <button type="button" data-v="iso" aria-pressed="true">전체</button>
+      <button type="button" data-v="top" aria-pressed="false">내부</button>
+      <button type="button" data-v="front" aria-pressed="false">전면</button>
+      <button type="button" data-v="side" aria-pressed="false">측면</button>
+      <button type="button" data-v="rear" aria-pressed="false">후면</button>
+      <button type="button" data-v="bottom" aria-pressed="false">하단</button>
+      <span class="sep" aria-hidden="true"></span>
+      <button type="button" id="dimBtn" aria-pressed="true">치수</button>
+    </div>
+    <p class="hint"><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 12a8.5 8.5 0 1 1-2.5-6"/><path d="M20.5 3.5V8H16"/><path d="M12 8.5v7M8.5 12h7" stroke-width="1.4"/></svg>드래그로 회전</span><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="6.5" y="3" width="11" height="18" rx="5.5"/><path d="M12 6.5v3.5"/><path d="M12 13.5v4M10.5 16l1.5 1.5 1.5-1.5" stroke-width="1.3"/></svg>휠로 확대</span></p>
+  </div>
+  <aside class="panel">
+    <div class="wiz"><div class="wiz-top"><span class="wiz-n" id="wizN">STEP 01 / 07</span><div class="wiz-bar"><i id="wizBar"></i></div></div><ol class="wiz-tabs" id="wizTabs"></ol></div>
+    <div class="opts" id="opts"></div>
+    <div class="sum">
+      <p class="warn warn-bar" id="warnBar" hidden></p>
+      <div class="kpis">
+        <div class="kpi"><span>GPU 메모리</span><strong id="kVram">0<em>GB</em></strong></div>
+        <div class="kpi"><span>총 스토리지</span><strong id="kDisk">0<em>TB</em></strong></div>
+        <div class="kpi"><span>예상 최대 전력</span><strong id="kPow">0<em>kW</em></strong></div>
+      </div>
+      <p class="note">전력은 GPU · CPU 제조사 공개 TDP 기준 참고값입니다. 정확한 사양과 금액은 엔지니어가 견적서로 안내합니다.</p>
+      <p class="need-hint" id="needHint" hidden></p>
+      <div class="nav"><button type="button" class="prev" id="prevBtn">이전</button><button type="button" class="cta" id="nextBtn">다음 <i aria-hidden="true">→</i></button></div>
+    </div>
+  </aside>
+</section>
+
+<div class="sheet-bg" id="sheetBg" hidden></div>
+<div class="sheet" id="sheet" role="dialog" aria-modal="true" aria-labelledby="sheetT" hidden>
+  <div class="sheet-hd"><h2 id="sheetT">견적 요청</h2><button type="button" class="x" id="closeSheet" aria-label="닫기">×</button></div>
+  <div class="sheet-bd">
+    <dl class="spec" id="specList"></dl>
+    <p class="disc disc-box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 11v5.5"/><path d="M12 7.6v.2" stroke-width="2.4"/></svg><span>본 3D 시뮬레이션과 구성은 이해를 돕기 위한 참고용으로, 실제 제품의 외형 · 부품 배치 · 사양과 다를 수 있습니다. 부품 수급, 호환성 검증, 제조사 사양 변경 등의 사유로 일부 구성이 변경될 수 있으며, 최종 사양과 금액은 담당 엔지니어의 견적서로 확정됩니다.</span></p>
+    <h3 class="sh">이 설계와 비슷한 추천 제품</h3><div id="sheetRecs"></div>
+    <form class="form" id="qForm" novalidate>
+      <label>회사 · 기관명<input id="fCo" name="co" autocomplete="organization" placeholder="예: ○○대학교 AI연구실"></label>
+      <label>담당자명 *<input id="fNm" name="nm" autocomplete="name" required></label>
+      <label>연락처 *<input id="fTel" name="tel" type="tel" autocomplete="tel" inputmode="tel" placeholder="010-0000-0000" required></label>
+      <label>이메일<input id="fMail" name="mail" type="email" autocomplete="email"></label>
+      <label class="full">요청 사항<textarea id="fMemo" name="memo" placeholder="예산, 납기, 설치 장소, 사용할 모델 등을 적어 주시면 더 정확한 견적을 드립니다"></textarea></label>
+      <label class="agree"><input type="checkbox" id="fAgree"> 견적 상담을 위한 개인정보 수집 · 이용에 동의합니다 (필수)</label>
+      <p class="err" id="fErr" hidden></p>
+    </form>
+  </div>
+  <div class="sheet-ft"><button type="submit" form="qForm" class="cta" style="margin-top:0">견적 문의 내용 만들기</button></div>
+</div>
+<div class="done" id="done" hidden role="alertdialog" aria-modal="true" aria-labelledby="doneT"><div class="done-card" id="doneCard"></div></div>
+
+<script src="js/configurator.js"></script>
+
+
+<script type="importmap">
+{ "imports": {
+  "three": "https://cdn.jsdelivr.net/npm/three@0.169.0/build/three.module.js",
+  "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.169.0/examples/jsm/"
+} }
+</script>
+<script>
+  // 파일을 직접 열었을 때만 내장 3D 모델을 불러옴
+  if (location.protocol === 'file:') document.write('<script src="js/models-embedded.js"><\/script>');
+</script>
+<!-- 3D 화면 (three.js). 파일을 직접 열어도 동작하도록 이 페이지 안에 둠 -->
+<script type="module">
+  // ── 3D 화면 (three.js) · 단위: 1 = 100mm ──
+  import * as THREE from 'three';
+  import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+  import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+  import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+  import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+  import { GTAOPass } from 'three/addons/postprocessing/GTAOPass.js';
+  import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+  import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+  import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
+  import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
+  import { toCreasedNormals } from 'three/addons/utils/BufferGeometryUtils.js';
+  import * as BufferGeometryUtils from 'three/addons/utils/BufferGeometryUtils.js';
+  // 실제 섀시 모델(models/*.glb). 불러오기 전에는 코드로 만든 섀시를 표시
+  // Alphacool NexXxoS XT45 Nova 1080 (+ 팬박스): 외곽 · 그릴 메쉬 + 회전용 팬 로터(9개 인스턴스) + 코어는 코드로
+  // 파일을 직접 열었을 때는 js/models-embedded.js의 내장 모델 사용
+  const MODEL = (p) => (location.protocol === 'file:' && window.YJMOD_MODELS && window.YJMOD_MODELS[p]) || p;
+  const NOVA = { shell: 'models/nova-1080-shell.glb', rotor: 'models/nova-1080-fan-rotor.glb', geo: null, busy: false };
+  const NOVA_FANS = [];
+  for (const cy of [0.126, 0.006, -0.114]) for (const cx of [0.12, 0.0015, -0.117]) NOVA_FANS.push([cx, cy, 0.048]);
+  function novaLoad(url) {
+    return new Promise((ok, no) => {
+      const ld = new GLTFLoader();
+      ld.setMeshoptDecoder(MeshoptDecoder);
+      ld.load(
+        MODEL(url),
+        (gl) => {
+          const out = [];
+          gl.scene.updateMatrixWorld(true);
+          gl.scene.traverse((o) => {
+            if (!o.isMesh) return;
+            let g = o.geometry.clone();
+            const p = g.attributes.position;
+            if (p.normalized || !(p.array instanceof Float32Array)) {
+              const f = new Float32Array(p.count * 3);
+              for (let i = 0; i < p.count; i++) {
+                f[i * 3] = p.getX(i);
+                f[i * 3 + 1] = p.getY(i);
+                f[i * 3 + 2] = p.getZ(i);
+              }
+              g.setAttribute('position', new THREE.BufferAttribute(f, 3));
+            }
+            g.applyMatrix4(o.matrixWorld);
+            g.deleteAttribute('normal');
+            const c = o.material.color;
+            out.push({ g, light: c && (c.r + c.g + c.b) / 3 > 0.5 });
+          });
+          ok(out);
+        },
+        undefined,
+        no,
+      );
+    });
+  }
+  function novaGeo() {
+    if (NOVA.geo) return NOVA.geo;
+    if (NOVA.busy) return null;
+    NOVA.busy = true;
+    Promise.all([novaLoad(NOVA.shell), novaLoad(NOVA.rotor)])
+      .then(([sh, ro]) => {
+        const fix = (g) => {
+          g.scale(10, 10, 10);
+          g = toCreasedNormals(g, Math.PI / 6);
+          g.computeBoundingSphere();
+          return g;
+        };
+        const rotor = ro.map((r) => {
+          r.g.translate(-0.12, -0.126, -0.048);
+          return { g: fix(r.g), light: true };
+        });
+        NOVA.geo = { shell: sh.map((x) => ({ g: fix(x.g), light: x.light })), rotor };
+        if (lastBuild && lastBuild[1].nova) window.YJ3D.build(...lastBuild);
+      })
+      .catch(() => {
+        NOVA.fail = true;
+      });
+    return null;
+  }
+  // 외장 라디에이터 배치: 서버 왼쪽 옆 바닥에 가로로 세움(넓은 면이 정면) + 후면에서 호스 2개
+  function buildNova(cfg) {
+    const geo = novaGeo(),
+      H = bounds.h,
+      D = bounds.d,
+      W = bounds.w,
+      CATp = CAT;
+    CAT = 'cool';
+    const sg = 1,
+      tw = S.form === 'tower',
+      real = !!cfg.final,
+      nx = sg * (-W / 2 - 2.35),
+      nz = tw ? D / 2 + 0.4 : -D / 4;
+    const grp = new THREE.Group();
+    grp.position.set(nx, 1.97, nz);
+    grp.userData.cat = 'cool';
+    root.add(grp);
+    const tag = (m) => {
+      m.userData.cat = 'cool';
+      m.userData.keep = real;
+      m.castShadow = real;
+      return m;
+    };
+    // 라디에이터 코어(구리 핀 블록): 코드로 - 원본 180만 폴리곤 대신 실제 치수(354 × 357 × 52mm) + 핀 인스턴스
+    const coreMat = real ? M.novaReal : M.novaBody,
+      finMat = real ? M.novaFin : M.ptL;
+    const core = tag(new THREE.Mesh(G.box, coreMat));
+    core.scale.set(3.52, 3.55, 0.5);
+    core.position.set(0, 0.055, 0);
+    grp.add(core);
+    const fins = new THREE.InstancedMesh(G.box, finMat, 84),
+      o3 = new THREE.Object3D();
+    for (let i = 0; i < 84; i++) {
+      o3.position.set(-1.72 + i * (3.44 / 83), 0.055, 0);
+      o3.scale.set(0.006, 3.45, 0.52);
+      o3.updateMatrix();
+      fins.setMatrixAt(i, o3.matrix);
+    }
+    grp.add(tag(fins));
+    if (geo) {
+      geo.shell.forEach((pt) => {
+        const m = tag(new THREE.Mesh(pt.g, pt.light ? (real ? M.novaGrill : M.ptL) : real ? M.novaReal : M.novaBody));
+        m.renderOrder = !real && !pt.light ? 2 : 0;
+        grp.add(m);
+      });
+      NOVA_FANS.forEach((f) => {
+        // 120mm 팬 9개 (3 × 3)
+        const hub = new THREE.Group();
+        hub.position.set(f[0] * 10, f[1] * 10, f[2] * 10);
+        grp.add(hub);
+        const spin = new THREE.Group();
+        hub.add(spin);
+        geo.rotor.forEach((r) => spin.add(tag(new THREE.Mesh(r.g, real ? M.novaFan : M.pt))));
+        SPIN.push({ o: spin, r: 1.2 });
+      });
+    } else {
+      const b = tag(new THREE.Mesh(G.box, coreMat));
+      b.scale.set(3.74, 3.95, 0.87);
+      grp.add(b);
+    }
+    // 호스: 서버 후면 커플러 → 뒤로 → 왼쪽 → 라디에이터 오른쪽 측면 포트(위 · 아래)
+    const hy = Math.min(H - 0.25, 0.6),
+      rz = -D / 2,
+      px = nx + sg * 1.95;
+    for (const k of [0, 1]) {
+      const sx = sg * (-W / 2 + 0.8 + k * 0.5),
+        py = 3.3 - k * 1.1,
+        lz = Math.min(rz, nz) - 0.45 - (1 - k) * 0.45,
+        ox = sg * (-W / 2 - 0.12 - (1 - k) * 0.14),
+        ry = hy + (1 - k) * 0.3;
+      C(0.09, 0.14, M.chrome, sx, hy, rz - 0.07, null, Math.PI / 2, 0, 0);
+      C(0.07, 0.12, M.chrome, px + sg * 0.06, py, nz, null, 0, 0, Math.PI / 2);
+      hardline(
+        [
+          V(sx, hy, rz - 0.02),
+          V(sx, hy, rz - 0.25),
+          V(sx, ry, lz),
+          V(ox, ry, lz),
+          V(ox, py, lz),
+          V(ox, py, nz),
+          V(px + sg * 0.02, py, nz),
+        ],
+        0.07,
+        M.hose,
+        0.35,
+      );
+    }
+    CAT = CATp;
+    return { extW: 3.2 };
+  }
+  const REAL = {
+    tw: { url: 'models/tower-chassis.glb', tower: true, geo: null, busy: false },
+    d4: { url: 'models/rack-4u-chassis.glb', x: -0.1, y: 0.919, z: 2.03, geo: null, busy: false },
+    d2: { url: 'models/rack-2u-chassis.glb', z: 0.027, geo: null, busy: false },
+  };
+  let lastBuild = null,
+    MIR = false,
+    lastView = 'iso';
+  function realChassis(key) {
+    const r = REAL[key];
+    if (!r) return null;
+    if (r.geo) return r.geo;
+    if (!r.busy) {
+      r.busy = true;
+      const ld = new GLTFLoader();
+      ld.setMeshoptDecoder(MeshoptDecoder);
+      ld.load(
+        MODEL(r.url),
+        (gl) => {
+          let g = null;
+          gl.scene.updateMatrixWorld(true);
+          gl.scene.traverse((o) => {
+            if (o.isMesh && !g) {
+              g = o.geometry.clone();
+              if (g.attributes.position.normalized) {
+                const p = g.attributes.position,
+                  f = new Float32Array(p.count * 3);
+                for (let i = 0; i < p.count; i++) {
+                  f[i * 3] = p.getX(i);
+                  f[i * 3 + 1] = p.getY(i);
+                  f[i * 3 + 2] = p.getZ(i);
+                }
+                g.setAttribute('position', new THREE.BufferAttribute(f, 3));
+              }
+              g.applyMatrix4(o.matrixWorld);
+            }
+          });
+          if (!g) return;
+          if (r.tower) {
+            // 타워 섀시: 실제 방향(전면 +z, 보드 트레이 +x) → 코드 좌표(보드 -x)로 x 반전해 저장, 화면에서는 root를 다시 뒤집어 실제 방향으로 표시
+            g.scale(10, 10, 10);
+            g.translate(0, 3.701, -0.567);
+            g.scale(-1, 1, 1);
+            const ix = g.index;
+            if (ix) {
+              const a = ix.array;
+              for (let i = 0; i < a.length; i += 3) {
+                const t = a[i + 1];
+                a[i + 1] = a[i + 2];
+                a[i + 2] = t;
+              }
+              ix.needsUpdate = true;
+            }
+          } else {
+            g.rotateY(Math.PI / 2);
+            g.scale(10, 10, 10);
+            g.translate(r.x || 0, r.y || 0, r.z);
+          }
+          g = toCreasedNormals(g, Math.PI / 6);
+          g.computeBoundingSphere();
+          r.geo = g;
+          if (
+            lastBuild &&
+            (lastBuild[0].grp === 'diy'
+              ? REAL[lastBuild[1].size]
+              : lastBuild[0].grp === 'tower' && lastBuild[1].size === 'full')
+          )
+            window.YJ3D.build(...lastBuild);
+        },
+        undefined,
+        () => {
+          r.busy = false;
+          r.fail = true;
+        },
+      );
+    }
+    return null;
+  }
+
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const mobile = matchMedia('(max-width: 760px)').matches;
+  let renderer,
+    scene,
+    camera,
+    controls,
+    root,
+    dimG,
+    canvas,
+    isActive = false,
+    dirty = true;
+  let camFrom = new THREE.Vector3(),
+    camTo = new THREE.Vector3(),
+    camT = 1,
+    popT = 1;
+  const target = new THREE.Vector3();
+  let bounds = { w: 1, h: 1, d: 1 },
+    S = null;
+
+  // 공유 지오메트리 · 재질 (스케일로 크기 지정 → 재생성 · 해제 불필요)
+  const G = {
+    box: new THREE.BoxGeometry(1, 1, 1),
+    cyl: new THREE.CylinderGeometry(1, 1, 1, 32),
+    cylLo: new THREE.CylinderGeometry(1, 1, 1, 10),
+    ring: new THREE.CylinderGeometry(1, 1, 1, 48, 1, true),
+    torus: new THREE.TorusGeometry(1, 0.02, 6, 56),
+    hex: new THREE.CylinderGeometry(1, 1, 1, 6),
+    plane: new THREE.PlaneGeometry(1, 1),
+    edge: null,
+  };
+  G.edge = new THREE.EdgesGeometry(G.box);
+  const std = (color, metalness, roughness, extra) =>
+    new THREE.MeshStandardMaterial(Object.assign({ color, metalness, roughness }, extra || {}));
+  // 스타일: 섀시·구조물은 반투명 실버(엑스레이 렌더), 핵심 부품(GPU·팬·라디에이터·수냉)은 YJMOD 블루 포인트
+  const frost = (color, opacity) =>
+    new THREE.MeshPhysicalMaterial({
+      color,
+      metalness: 0,
+      roughness: 0.3,
+      envMapIntensity: 0.35,
+      clearcoat: 0.35,
+      clearcoatRoughness: 0.2,
+      transparent: true,
+      opacity,
+      depthWrite: false,
+      side: THREE.DoubleSide,
+    });
+  const plastic = (color, extra) =>
+    new THREE.MeshPhysicalMaterial(
+      Object.assign({ color, metalness: 0, roughness: 0.42, clearcoat: 0.45, clearcoatRoughness: 0.3 }, extra || {}),
+    );
+  const M = {
+    glass: frost(0xdfe3ec, 0.05),
+    chassis: frost(0xc9cdd8, 0.12),
+    shell: frost(0xd6dae3, 0.32),
+    shellLite: frost(0xd6dae3, 0.13),
+    pcb: std(0xd9dce4, 0.2, 0.55),
+    steel: std(0xc3c6cf, 0.95, 0.28),
+    black: std(0x3a3d48, 0.35, 0.5),
+    blackDS: std(0x3a3d48, 0.35, 0.5, { side: THREE.DoubleSide }),
+    dark: std(0x4a4d58, 0.5, 0.45),
+    shroud: std(0x4a4d58, 0.5, 0.45),
+    alu: std(0xd4d7df, 1, 0.26),
+    chrome: std(0xeef0f4, 1, 0.12),
+    copper: std(0xb5b8c2, 1, 0.3),
+    dimm: std(0xd9dce4, 0.3, 0.5),
+    chip: std(0x2c2e36, 0.2, 0.5),
+    gold: std(0xd8aa4c, 1, 0.3),
+    white: std(0xf4f5f9, 0.1, 0.5),
+    pt: plastic(0x2f38f0),
+    ptL: plastic(0x5c64ff, { roughness: 0.35 }),
+    ptDS: plastic(0x2f38f0, { side: THREE.DoubleSide }),
+    blue: std(0x3d46ff, 0.2, 0.3, { emissive: 0x3d46ff, emissiveIntensity: 0.9 }),
+    latch: std(0x333cef, 0.1, 0.45),
+    acryl: frost(0xe8ebff, 0.22),
+    hose: std(0x1b1c22, 0.05, 0.7),
+    novaBody: frost(0xd6dae3, 0.2),
+    novaFan: std(0xe8eaef, 0.02, 0.45),
+    novaReal: std(0x16171b, 0.65, 0.38),
+    novaGrill: std(0x0e0f12, 0.55, 0.45),
+    novaFin: std(0xa0612f, 0.9, 0.35),
+    coolant: plastic(0x3a43ff, {
+      roughness: 0.18,
+      clearcoat: 1,
+      clearcoatRoughness: 0.05,
+      emissive: 0x2a33e6,
+      emissiveIntensity: 0,
+    }),
+    led: new THREE.MeshBasicMaterial({ color: 0xa9adff }),
+    ledOff: std(0x8d909b, 0.3, 0.6),
+    edge: new THREE.LineBasicMaterial({ color: 0xf0f2f8, transparent: true, opacity: 0.32 }),
+    edgeSoft: new THREE.LineBasicMaterial({ color: 0xf0f2f8, transparent: true, opacity: 0.14 }),
+    dim: new THREE.LineBasicMaterial({ color: 0xc9ccff, transparent: true, opacity: 0.9 }),
+    dimExt: new THREE.LineBasicMaterial({ color: 0xc9ccff, transparent: true, opacity: 0.3 }),
+  };
+  // 타공 메쉬(전면 그릴 · PSU 허니콤): 캔버스 한 장을 반복, 크기별 재질은 캐시해 재사용
+  let meshTex = null;
+  const meshCache = new Map();
+  function meshMat(w, h, color = 0xd3d6df) {
+    const k = Math.round(w * 20) + 'x' + Math.round(h * 20) + ':' + color;
+    let m = meshCache.get(k);
+    if (m) return m;
+    if (!meshTex) {
+      const c = document.createElement('canvas');
+      c.width = c.height = 64;
+      const x = c.getContext('2d');
+      x.fillStyle = '#fff';
+      x.fillRect(0, 0, 64, 64);
+      x.fillStyle = '#000';
+      [
+        [16, 16],
+        [48, 16],
+        [0, 48],
+        [32, 48],
+        [64, 48],
+      ].forEach(([a, b]) => {
+        x.beginPath();
+        x.arc(a, b, 12, 0, Math.PI * 2);
+        x.fill();
+      });
+      meshTex = new THREE.CanvasTexture(c);
+      meshTex.wrapS = meshTex.wrapT = THREE.RepeatWrapping;
+      meshTex.anisotropy = 4;
+    }
+    const t = meshTex.clone();
+    t.repeat.set(w / 0.12, h / 0.12);
+    t.needsUpdate = true;
+    m = std(color, 0.85, 0.3, { alphaMap: t, alphaTest: 0.5, side: THREE.DoubleSide });
+    meshCache.set(k, m);
+    return m;
+  }
+  let logoMat = null;
+  function logo() {
+    if (logoMat) return logoMat;
+    const c = document.createElement('canvas');
+    c.width = 512;
+    c.height = 128;
+    const x = c.getContext('2d');
+    x.fillStyle = '#4d55ff';
+    x.font = '800 104px "Barlow Condensed", sans-serif';
+    x.textAlign = 'center';
+    x.textBaseline = 'middle';
+    x.fillText('YJMOD', 256, 68);
+    const t = new THREE.CanvasTexture(c);
+    t.colorSpace = THREE.SRGBColorSpace;
+    t.anisotropy = 4;
+    logoMat = new THREE.MeshBasicMaterial({ map: t, transparent: true, depthWrite: false, toneMapped: false });
+    return logoMat;
+  }
+
+  // 배치 빌더: 같은 (지오메트리, 재질) 파트는 모아서 InstancedMesh 하나로 → 디테일을 늘려도 드로우콜은 수십 개
+  let BAT = new Map(),
+    CAT = 'base',
+    SPIN = [];
+  const _o = new THREE.Object3D(),
+    ONE = new THREE.Vector3(1, 1, 1),
+    YUP = new THREE.Vector3(0, 1, 0);
+  const V = (x, y, z) => new THREE.Vector3(x, y, z);
+  function F(x = 0, y = 0, z = 0, rx = 0, ry = 0, rz = 0, P) {
+    const m = new THREE.Matrix4().compose(
+      V(x, y, z),
+      new THREE.Quaternion().setFromEuler(new THREE.Euler(rx, ry, rz)),
+      ONE,
+    );
+    return P ? P.clone().multiply(m) : m;
+  }
+  const wp = (P, x, y, z) => V(x, y, z).applyMatrix4(P),
+    wd = (P, x, y, z) => V(x, y, z).transformDirection(P);
+  function add(geo, mat, m) {
+    if (m.elements.some((v) => !isFinite(v))) return;
+    const k = geo.id + ':' + mat.id + ':' + CAT;
+    let e = BAT.get(k);
+    if (!e) BAT.set(k, (e = { geo, mat, list: [], cat: CAT }));
+    e.list.push(m);
+  }
+  function put(geo, mat, sx, sy, sz, x, y, z, P, rx = 0, ry = 0, rz = 0) {
+    _o.position.set(x, y, z);
+    _o.rotation.set(rx, ry, rz);
+    _o.scale.set(sx, sy, sz);
+    _o.updateMatrix();
+    add(geo, mat, P ? P.clone().multiply(_o.matrix) : _o.matrix.clone());
+  }
+  // 모서리 라운드: 두께 5mm 이상 부품은 실물 판금·사출물처럼 반경 1~3.5mm 필렛 (얇은 핀·판은 그대로)
+  const rboxCache = new Map();
+  function rbox(w, h, d) {
+    const k = w.toFixed(3) + ',' + h.toFixed(3) + ',' + d.toFixed(3);
+    let g = rboxCache.get(k);
+    if (g) return g;
+    const m = Math.min(w, h, d),
+      r = Math.min(0.035, Math.max(0.01, m * 0.2));
+    g = new RoundedBoxGeometry(w, h, d, Math.max(w, h, d) > 0.4 ? 3 : 2, r);
+    rboxCache.set(k, g);
+    return g;
+  }
+  const B = (w, h, d, mat, x, y, z, P, rx, ry, rz) =>
+    Math.min(w, h, d) >= 0.05 && !mat.transparent
+      ? put(rbox(w, h, d), mat, 1, 1, 1, x, y, z, P, rx, ry, rz)
+      : put(G.box, mat, w, h, d, x, y, z, P, rx, ry, rz);
+  const C = (r, h, mat, x, y, z, P, rx, ry, rz) => put(G.cyl, mat, r, h, r, x, y, z, P, rx, ry, rz);
+  const Cs = (r, h, mat, x, y, z, P, rx, ry, rz) => put(G.cylLo, mat, r, h, r, x, y, z, P, rx, ry, rz);
+  const plane = (w, h, mat, x, y, z, P, rx, ry, rz) => put(G.plane, mat, w, h, 1, x, y, z, P, rx, ry, rz);
+  function flush() {
+    BAT.forEach((e) => {
+      const im = new THREE.InstancedMesh(e.geo, e.mat, e.list.length);
+      e.list.forEach((m, i) => im.setMatrixAt(i, m));
+      im.computeBoundingSphere();
+      im.renderOrder = e.mat.transparent ? 2 : 0;
+      im.userData.cat = e.cat;
+      root.add(im);
+    });
+    BAT = new Map();
+  }
+  function outline(w, h, d, x, y, z, mat = M.edge) {
+    const l = new THREE.LineSegments(G.edge, mat);
+    l.scale.set(w, h, d);
+    l.position.set(x, y, z);
+    l.matrixAutoUpdate = false;
+    l.updateMatrix();
+    root.add(l);
+  }
+  function glassBox(w, h, d, x, y, z) {
+    B(w, h, d, M.glass, x, y, z);
+    outline(w, h, d, x, y, z);
+  }
+
+  // 수냉 하드라인: 직선 + 짧은 벤딩(실제 아크릴 하드튜빙처럼)
+  function hardline(pts, r, mat = M.coolant, bend = 0.16) {
+    // 정리: 너무 가까운 점 · 같은 직선 위의 점 · 되돌아가는 점 제거 → 꺾임(킹크) 방지
+    let P = [];
+    pts.forEach((v) => {
+      if (!P.length || P[P.length - 1].distanceTo(v) > Math.max(0.02, r * 0.8)) P.push(v);
+    });
+    for (let changed = true; changed && P.length > 2; ) {
+      changed = false;
+      for (let i = 1; i < P.length - 1; i++) {
+        const d1 = P[i]
+            .clone()
+            .sub(P[i - 1])
+            .normalize(),
+          d2 = P[i + 1].clone().sub(P[i]).normalize(),
+          dt = d1.dot(d2);
+        if (dt > 0.999 || dt < -0.2) {
+          P.splice(i, 1);
+          changed = true;
+          break;
+        }
+      }
+    }
+    if (P.length < 2) return;
+    const path = new THREE.CurvePath();
+    let prev = P[0].clone();
+    for (let i = 1; i < P.length - 1; i++) {
+      const a = P[i - 1],
+        b = P[i],
+        c = P[i + 1],
+        d1 = b.clone().sub(a),
+        d2 = c.clone().sub(b);
+      const rr = Math.max(
+        0,
+        Math.min(bend, d1.length() * (i === 1 ? 0.9 : 0.5), d2.length() * (i === P.length - 2 ? 0.9 : 0.5)),
+      );
+      const s = b.clone().sub(d1.normalize().multiplyScalar(rr)),
+        e = b.clone().add(d2.normalize().multiplyScalar(rr));
+      if (prev.distanceTo(s) > 1e-4) path.add(new THREE.LineCurve3(prev, s));
+      path.add(new THREE.QuadraticBezierCurve3(s, b.clone(), e));
+      prev = e;
+    }
+    path.add(new THREE.LineCurve3(prev, P[P.length - 1]));
+    const m = new THREE.Mesh(
+      new THREE.TubeGeometry(path, Math.max(48, Math.round(path.getLength() * 40)), r, 14, false),
+      mat,
+    );
+    m.userData.own = true;
+    m.userData.cat = CAT;
+    root.add(m);
+  }
+  function fitting(q) {
+    // 컴프레션 피팅: 육각 너트 + 고무 링 + 크롬 칼라 (알파쿨 실물 형태)
+    const qq = new THREE.Quaternion().setFromUnitVectors(YUP, q.d),
+      at = (k, mat, geo, r, h) =>
+        add(geo, mat, new THREE.Matrix4().compose(q.p.clone().addScaledVector(q.d, k), qq, V(r, h, r)));
+    at(0.02, M.chrome, G.hex, 0.078, 0.04);
+    at(0.046, M.black, G.cyl, 0.066, 0.012);
+    at(0.09, M.chrome, G.cyl, 0.064, 0.076);
+    at(0.13, M.black, G.cyl, 0.056, 0.006);
+  }
+  const ext = (q, k = 0.14) => q.p.clone().addScaledVector(q.d, k);
+  let LOOP = 'custom';
+  function pipe(a, mids, b, r = 0.042) {
+    if (LOOP === 'aio') {
+      // 일체형: 검정 고무 소프트 튜브, 부드러운 곡선
+      const hr = S && S.u === 2 ? 0.045 : 0.06; // 일체형 소프트 호스: 같은 경로 정리 + 큰 곡률 반경(최소 굽힘 반경 고려)
+      hardline([a.p.clone(), ext(a, 0.14), ...mids.map((m) => V(...m)), ext(b, 0.14), b.p.clone()], hr, M.hose, 0.3);
+      for (const q of [a, b])
+        add(
+          G.cyl,
+          M.black,
+          new THREE.Matrix4().compose(
+            q.p.clone().addScaledVector(q.d, 0.05),
+            new THREE.Quaternion().setFromUnitVectors(YUP, q.d),
+            V(0.08, 0.1, 0.08),
+          ),
+        );
+      return;
+    }
+    fitting(a);
+    fitting(b);
+    hardline([a.p.clone(), ext(a), ...mids.map((m) => V(...m)), ext(b), b.p.clone()], r);
+  }
+
+  // ── 부품 ──
+  function fan(P, s, t = 0.25, round = false, grill = false) {
+    // 정면 +z
+    const b = s * 0.07,
+      r = s * 0.46;
+    if (!round) {
+      B(s, b, t, M.pt, 0, (s - b) / 2, 0, P);
+      B(s, b, t, M.pt, 0, -(s - b) / 2, 0, P);
+      B(b, s - 2 * b, t, M.pt, (s - b) / 2, 0, 0, P);
+      B(b, s - 2 * b, t, M.pt, -(s - b) / 2, 0, 0, P);
+      for (const [sx, sy] of [
+        [1, 1],
+        [1, -1],
+        [-1, 1],
+        [-1, -1],
+      ]) {
+        B(s * 0.18, s * 0.18, t, M.pt, sx * s * 0.41, sy * s * 0.41, 0, P);
+        Cs(s * 0.028, 0.012, M.alu, sx * s * 0.42, sy * s * 0.42, t / 2 + 0.006, P, Math.PI / 2, 0, 0);
+      }
+    }
+    put(G.ring, M.ptDS, r, t * 0.98, r, 0, 0, 0, P, Math.PI / 2, 0, 0);
+    for (let i = 0; i < 4; i++) {
+      const a = (i * Math.PI) / 2 + Math.PI / 4;
+      B(r, 0.022, 0.03, M.pt, (Math.cos(a) * r) / 2, (Math.sin(a) * r) / 2, -t / 2 + 0.03, P, 0, 0, a);
+    }
+    C(s * 0.15, t * 0.75, M.pt, 0, 0, 0, P, Math.PI / 2, 0, 0);
+    C(s * 0.105, 0.012, M.white, 0, 0, t * 0.375 + 0.006, P, Math.PI / 2, 0, 0);
+    {
+      const hub = new THREE.Group();
+      hub.applyMatrix4(P);
+      const spin = new THREE.Group();
+      hub.add(spin);
+      const im = new THREE.InstancedMesh(G.box, M.pt, 7);
+      im.userData.cat = CAT;
+      hub.userData.cat = CAT;
+      for (let i = 0; i < 7; i++)
+        im.setMatrixAt(
+          i,
+          F(0, 0, 0, 0, 0, (i / 7) * Math.PI * 2).multiply(
+            new THREE.Matrix4().compose(
+              V(s * 0.3, 0, 0.02),
+              new THREE.Quaternion().setFromEuler(new THREE.Euler(0.5, 0, 0)),
+              V(s * 0.3, s * 0.17, 0.012),
+            ),
+          ),
+        );
+      im.computeBoundingSphere();
+      spin.add(im);
+      root.add(hub);
+      SPIN.push({ o: spin, r: s });
+    }
+    if (grill) {
+      const gz = t / 2 + 0.03;
+      for (const k of [0.16, 0.36, 0.56, 0.76, 0.96]) put(G.torus, M.chrome, r * k, r * k, r * k * 0.5, 0, 0, gz, P);
+      for (const a of [Math.PI / 4, -Math.PI / 4]) Cs(0.009, s * 1.17, M.chrome, 0, 0, gz, P, 0, 0, a);
+      for (const [sx, sy] of [
+        [1, 1],
+        [1, -1],
+        [-1, 1],
+        [-1, -1],
+      ])
+        put(G.torus, M.chrome, s * 0.045, s * 0.045, s * 0.045, sx * s * 0.415, sy * s * 0.415, gz, P);
+    }
+  }
+  function radiator(P, w, h, t = 0.3) {
+    // 정면 +z, 탱크는 로컬 ±x 끝
+    B(0.14, h, t + 0.02, M.pt, -(w / 2 - 0.07), 0, 0, P);
+    B(0.14, h, t + 0.02, M.pt, w / 2 - 0.07, 0, 0, P);
+    B(w - 0.28, 0.025, t, M.pt, 0, h / 2 - 0.0125, 0, P);
+    B(w - 0.28, 0.025, t, M.pt, 0, -h / 2 + 0.0125, 0, P);
+    const cw = w - 0.28,
+      nf = Math.round(cw / 0.035),
+      nt = Math.max(4, Math.round((h - 0.05) / 0.09));
+    for (let i = 0; i < nf; i++) B(0.004, h - 0.05, t * 0.92, M.ptL, -cw / 2 + ((i + 0.5) * cw) / nf, 0, 0, P);
+    for (let j = 0; j < nt; j++) B(cw, 0.014, t * 0.86, M.pt, 0, -h / 2 + 0.025 + ((j + 0.5) * (h - 0.05)) / nt, 0, P);
+    for (const zs of [1, -1]) {
+      const zz = zs * (t / 2 + 0.008);
+      B(cw, 0.04, 0.016, M.pt, 0, h / 2 - 0.04, zz, P);
+      B(cw, 0.04, 0.016, M.pt, 0, -h / 2 + 0.04, zz, P);
+      const nS = Math.max(3, Math.round(cw / 0.3));
+      for (let i = 0; i <= nS; i++)
+        for (const ys of [1, -1])
+          Cs(0.012, 0.01, M.chrome, -cw / 2 + (i * cw) / nS, ys * (h / 2 - 0.04), zz + zs * 0.008, P, Math.PI / 2, 0, 0);
+    }
+    const back = wd(P, 0, 0, -1),
+      q = (x, y) => ({ p: wp(P, x, y, -t / 2 - 0.01), d: back });
+    return {
+      L: q(-(w / 2 - 0.07), h / 2 - 0.12),
+      R: q(w / 2 - 0.07, h / 2 - 0.12),
+      T1: q(w / 2 - 0.07, h / 2 - 0.2),
+      T2: q(w / 2 - 0.07, -(h / 2 - 0.2)),
+    };
+  }
+  // 메인보드 공통 디테일: 칩셋 방열판 · M.2 · VRM 인덕터/캡 · 헤더 · 배터리 · 스탠드오프 (로컬 XZ, 윗면 y = 0)
+  function boardDetail(P, w, d, keep) {
+    const fr = (x, z) => keep && keep.some((k) => x > k[0] && x < k[1] && z > k[2] && z < k[3]);
+    for (const [x, z] of [
+      [-w / 2 + 0.12, -d / 2 + 0.12],
+      [w / 2 - 0.12, -d / 2 + 0.12],
+      [-w / 2 + 0.12, d / 2 - 0.12],
+      [w / 2 - 0.12, d / 2 - 0.12],
+      [0, -d / 2 + 0.12],
+      [0, d / 2 - 0.12],
+    ]) {
+      Cs(0.035, 0.012, M.gold, x, 0.006, z, P);
+      Cs(0.016, 0.014, M.steel, x, 0.008, z, P);
+    }
+    // 칩셋 방열판 (핀 포함)
+    const cx = w * 0.22,
+      cz = d * 0.28;
+    if (!fr(cx, cz)) {
+      B(0.5, 0.06, 0.5, M.dark, cx, 0.03, cz, P);
+      for (let i = 0; i < 9; i++) B(0.5, 0.05, 0.012, M.alu, cx, 0.085, cz - 0.22 + i * 0.055, P);
+      B(0.16, 0.005, 0.16, M.white, cx, 0.113, cz, P);
+    }
+    // M.2 슬롯 2개 + SSD
+    for (let k = 0; k < 2; k++) {
+      const mx = -w * 0.1 + k * 0.32,
+        mz = d * 0.32;
+      if (fr(mx, mz)) continue;
+      B(0.1, 0.03, 0.04, M.black, mx, 0.015, mz - 0.4, P);
+      B(0.22, 0.012, 0.8, M.pcb, mx, 0.03, mz, P);
+      for (let i = 0; i < 3; i++) B(0.15, 0.012, 0.16, M.chip, mx, 0.042, mz - 0.25 + i * 0.22, P);
+      B(0.14, 0.004, 0.3, M.white, mx, 0.049, mz + 0.1, P);
+    }
+    // VRM 인덕터 · 고체 캐패시터 열 (보드 뒤쪽 가장자리)
+    for (let i = 0; i < 14; i++) {
+      const x = -w / 2 + 0.35 + (i * (w - 0.7)) / 13,
+        z = -d / 2 + 0.32;
+      if (fr(x, z)) continue;
+      B(0.07, 0.055, 0.07, M.dark, x, 0.028, z, P);
+      Cs(0.022, 0.07, M.alu, x, 0.035, z + 0.1, P);
+    }
+    // 앞쪽 가장자리 헤더 · SATA · 팬 커넥터
+    for (let i = 0; i < 10; i++) {
+      const x = -w / 2 + 0.3 + (i * (w - 0.6)) / 9,
+        z = d / 2 - 0.1;
+      if (fr(x, z)) continue;
+      B(0.12, 0.05, 0.05, i % 3 ? M.black : M.latch, x, 0.025, z, P);
+    }
+    for (let i = 0; i < 4; i++) B(0.08, 0.05, 0.16, M.black, w / 2 - 0.12, 0.025, d * 0.05 + i * 0.2, P);
+    C(0.06, 0.012, M.chrome, -w * 0.3, 0.006, d * 0.35, P); // CMOS 배터리
+    for (let i = 0; i < 24; i++) {
+      const x = -w / 2 + 0.3 + (((i * 37) % 100) / 100) * (w - 0.6),
+        z = -d / 2 + 0.5 + (((i * 53) % 100) / 100) * (d - 1);
+      if (!fr(x, z)) B(0.05, 0.008, 0.04, M.chip, x, 0.004, z, P);
+    }
+    // 24핀 · 8핀 전원 커넥터
+    B(0.12, 0.07, 0.55, M.dark, w / 2 - 0.12, 0.035, -d * 0.1, P);
+    B(0.12, 0.07, 0.2, M.dark, -w / 2 + 0.5, 0.035, -d / 2 + 0.15, P);
+  }
+  function socket(P) {
+    B(0.82, 0.035, 0.95, M.steel, 0, 0.0175, 0, P);
+    B(0.64, 0.012, 0.76, M.chip, 0, 0.04, 0, P);
+    B(0.03, 0.03, 0.7, M.steel, 0.44, 0.02, 0, P);
+    for (const sx of [-1, 1]) for (const sz of [-1, 1]) Cs(0.03, 0.05, M.steel, sx * 0.36, 0.045, sz * 0.43, P);
+    B(0.86, 0.006, 0.06, M.steel, 0, 0.036, 0.45, P);
+    B(0.86, 0.006, 0.06, M.steel, 0, 0.036, -0.45, P);
+  }
+  function cpuAirServer(P, hh) {
+    B(0.8, 0.07, 0.88, M.copper, 0, 0.075, 0, P);
+    for (let i = 0; i < 34; i++) B(0.006, hh, 0.92, M.alu, -0.39 + i * (0.78 / 33), 0.11 + hh / 2, 0, P);
+    for (let k = 0; k < 4; k++) Cs(0.028, hh + 0.06, M.copper, -0.27 + k * 0.18, 0.11 + hh / 2, k % 2 ? 0.18 : -0.18, P);
+    B(0.8, 0.012, 0.92, M.alu, 0, 0.116 + hh, 0, P);
+  }
+  function coolerTower(P) {
+    // 듀얼 타워 공냉 쿨러 (140mm 팬 2개)
+    B(0.62, 0.1, 0.62, M.alu, 0, 0.07, 0, P);
+    for (const sz of [-0.38, 0.38]) {
+      for (let i = 0; i < 40; i++) B(1.4, 0.006, 0.5, M.alu, 0, 0.45 + i * 0.029, sz, P);
+      for (let k = 0; k < 3; k++) Cs(0.03, 1.6, M.copper, -0.3 + k * 0.3, 0.82, sz + (k % 2 ? 0.1 : -0.1), P);
+      B(1.42, 0.03, 0.52, M.dark, 0, 1.62, sz, P);
+      B(1.0, 0.008, 0.04, M.latch, 0, 1.64, sz, P);
+    }
+    fan(F(0, 1.02, 0, 0, 0, 0, P), 1.4);
+    fan(F(0, 1.02, 0.76, 0, 0, 0, P), 1.4);
+  }
+  function coolerSingle(P) {
+    // 싱글 타워 쿨러 (듀얼 소켓용, 120mm 팬)
+    B(0.62, 0.1, 0.62, M.alu, 0, 0.07, 0, P);
+    for (let i = 0; i < 40; i++) B(1.3, 0.006, 0.5, M.alu, 0, 0.45 + i * 0.029, 0, P);
+    for (let k = 0; k < 3; k++) Cs(0.03, 1.6, M.copper, -0.3 + k * 0.3, 0.82, k % 2 ? 0.1 : -0.1, P);
+    B(1.32, 0.03, 0.52, M.dark, 0, 1.62, 0, P);
+    B(0.9, 0.008, 0.04, M.latch, 0, 1.64, 0, P);
+    fan(F(0, 1.02, 0.39, 0, 0, 0, P), 1.2);
+  }
+  function nic(P, kind) {
+    // 로우프로파일 NIC 168 × 68.9mm (로컬 축은 gpu와 동일)
+    const len = 1.68,
+      h = 0.69;
+    B(0.016, h, len, M.pcb, -0.06, 0, 0, P);
+    B(0.015, 0.06, 0.9, M.gold, -0.06, -h / 2 - 0.005, -len / 2 + 0.5, P);
+    B(0.12, 0.38, 0.5, M.pt, 0.02, 0.05, -0.1, P);
+    for (let i = 0; i < 8; i++) B(0.1, 0.006, 0.48, M.ptL, 0.02, -0.1 + i * 0.045, -0.1, P);
+    B(0.16, h + 0.06, 0.015, M.steel, 0, 0.02, -len / 2 - 0.01, P);
+    const q = kind === '400g' ? [0.16, 0.1] : kind === '100g' ? [0.14, 0.09] : [0.11, 0.07];
+    for (const s of [-1, 1]) {
+      B(0.1, q[0], 0.2, M.alu, 0.0, s * 0.14, -len / 2 + 0.08, P);
+      B(0.08, q[1], 0.01, M.chip, 0, s * 0.14, -len / 2 - 0.025, P);
+      B(0.02, 0.02, 0.01, M.led, 0.04, s * 0.14 + q[0] / 2 + 0.02, -len / 2 - 0.025, P);
+    }
+    B(0.06, 0.05, 0.2, M.latch, 0.03, h / 2 - 0.05, len / 2 - 0.2, P);
+    for (let i = 0; i < 12; i++)
+      B(0.012, 0.03, 0.03, M.chip, -0.045, -0.25 + (i % 4) * 0.08, 0.25 + Math.floor(i / 4) * 0.12, P);
+    B(0.012, 0.1, 0.1, M.chip, -0.045, 0.2, 0.5, P);
+    for (let i = 0; i < 5; i++) B(0.15, 0.01, 0.01, M.black, 0, -0.25 + i * 0.02, -len / 2 - 0.012, P);
+  }
+  function cpuWater(P) {
+    B(0.82, 0.03, 0.96, M.alu, 0, 0.015, 0, P);
+    B(0.7, 0.05, 0.9, M.ptL, 0, 0.055, 0, P);
+    B(0.66, 0.12, 0.86, M.pt, 0, 0.14, 0, P);
+    for (const sx of [-1, 1])
+      for (const sz of [-1, 1]) {
+        Cs(0.042, 0.014, M.black, sx * 0.27, 0.207, sz * 0.37, P);
+        Cs(0.018, 0.016, M.chrome, sx * 0.27, 0.209, sz * 0.37, P);
+      }
+    for (const sx of [-1, 1]) {
+      B(0.03, 0.07, 0.16, M.alu, sx * 0.34, 0.15, -0.18, P);
+      Cs(0.014, 0.01, M.black, sx * 0.356, 0.15, -0.18, P, 0, 0, Math.PI / 2);
+    }
+    B(0.14, 0.006, 0.14, M.white, 0, 0.203, -0.2, P);
+    const up = wd(P, 0, 1, 0);
+    return [
+      { p: wp(P, 0.13, 0.2, 0), d: up },
+      { p: wp(P, -0.13, 0.2, 0), d: up },
+    ];
+  }
+  function dimmSlot(P) {
+    B(0.065, 0.05, 1.42, M.black, 0, 0.025, 0, P);
+    B(0.02, 0.052, 1.36, M.dark, 0, 0.027, 0, P);
+    B(0.075, 0.09, 0.035, M.latch, 0, 0.05, 0.72, P);
+    B(0.075, 0.09, 0.035, M.latch, 0, 0.05, -0.72, P);
+  }
+  function dimm(P, spread) {
+    B(0.012, 0.31, 1.33, M.dimm, 0, 0.205, 0, P);
+    B(0.014, 0.012, 1.2, M.gold, 0, 0.055, 0, P);
+    B(0.014, 0.06, 0.25, M.white, 0, 0.3, 0.35, P);
+    for (const s of [-1, 1]) for (let k = 0; k < 5; k++) B(0.006, 0.1, 0.11, M.chip, s * 0.009, 0.2, -0.5 + k * 0.25, P);
+    if (spread) {
+      B(0.034, 0.29, 1.3, M.dark, 0, 0.21, 0, P);
+      B(0.036, 0.025, 1.3, M.latch, 0, 0.36, 0, P);
+    }
+  }
+  // GPU: 로컬 x = 두께(PCB가 -x), y = 카드 높이(PCIe 단자가 -y), z = 길이(브래킷이 -z)
+  function gpu(P, o) {
+    const { len, h, th, water, style } = o,
+      pcbX = -th / 2 + 0.03;
+    B(0.016, h * 0.9, len * 0.97, M.pcb, pcbX, -h * 0.03, 0, P);
+    B(0.015, 0.075, 0.89, M.gold, pcbX, -h / 2 - 0.005, -len / 2 + 0.42 + 0.445, P);
+    B(0.012, h * 0.94, len * 0.97, M.pt, pcbX - 0.018, 0, 0, P);
+    B(th + 0.02, h + 0.06, 0.015, M.steel, 0, 0.02, -len / 2 - 0.01, P);
+    for (let i = 0; i < 4; i++) B(th * 0.5, 0.06, 0.01, M.black, 0, h * 0.3 - i * 0.15, -len / 2 - 0.02, P);
+    // 백플레이트 · 나사 · 전원 커넥터(12V-2×6) · PCB 부품
+    B(0.01, h * 0.88, len * 0.9, M.chassis === M.pt ? M.dark : M.black, pcbX - 0.034, 0, 0.02, P);
+    for (let i = 0; i < 6; i++)
+      Cs(
+        0.016,
+        0.008,
+        M.alu,
+        pcbX - 0.04,
+        (i % 2 ? 0.3 : -0.3) * h,
+        -len * 0.35 + Math.floor(i / 2) * len * 0.3,
+        P,
+        0,
+        0,
+        Math.PI / 2,
+      );
+    B(0.07, 0.05, 0.2, M.black, pcbX + 0.06, h / 2 + 0.02, len / 2 - 0.35, P);
+    for (let i = 0; i < 6; i++) B(0.03, 0.012, 0.02, M.gold, pcbX + 0.06, h / 2 + 0.048, len / 2 - 0.44 + i * 0.035, P);
+    for (let i = 0; i < 10; i++) B(0.012, 0.04, 0.04, M.chip, pcbX + 0.014, -h * 0.38, -len * 0.4 + i * len * 0.09, P);
+    const fx = 0.02 + th * 0.4;
+    if (water) {
+      B(0.03, h * 0.94, len * 0.95, M.alu, pcbX + 0.035, 0, 0, P);
+      B(0.13, h * 0.9, len * 0.9, M.pt, pcbX + 0.115, 0, 0, P);
+      B(0.135, h * 0.9, 0.03, M.ptL, pcbX + 0.115, 0, -len * 0.45, P);
+      for (let i = 0; i < 9; i++)
+        B(0.02, h * 0.78, 0.045, M.ptL, pcbX + 0.19, -h * 0.02, -len * 0.38 + i * len * 0.08, P);
+      B(0.04, h * 0.3, len * 0.5, M.white, pcbX + 0.185, h * 0.26, -len * 0.1, P);
+      B(0.17, 0.22, 0.36, M.pt, pcbX + 0.12, h / 2 + 0.09, len * 0.3, P);
+      B(0.175, 0.03, 0.37, M.ptL, pcbX + 0.12, h / 2 + 0.19, len * 0.3, P);
+      // 아크릴 윈도우 · 냉각수 채널 · 고정 나사
+      B(0.02, h * 0.5, len * 0.55, M.acryl, pcbX + 0.19, -h * 0.12, -len * 0.12, P);
+      for (let i = 0; i < 4; i++)
+        B(0.012, 0.025, len * 0.5, M.coolant, pcbX + 0.192, -h * 0.3 + i * h * 0.12, -len * 0.12, P);
+      for (let i = 0; i < 8; i++)
+        Cs(
+          0.014,
+          0.01,
+          M.chrome,
+          pcbX + 0.186,
+          (i % 2 ? 0.38 : -0.38) * h,
+          -len * 0.42 + Math.floor(i / 2) * len * 0.26,
+          P,
+          0,
+          0,
+          Math.PI / 2,
+        );
+      for (const dz of [-0.1, 0.1]) Cs(0.06, 0.03, M.chrome, pcbX + 0.12, h / 2 + 0.2, len * 0.3 + dz, P);
+      const up = wd(P, 0, 1, 0);
+      return [
+        { p: wp(P, pcbX + 0.12, h / 2 + 0.18, len * 0.3 - 0.1), d: up },
+        { p: wp(P, pcbX + 0.12, h / 2 + 0.18, len * 0.3 + 0.1), d: up },
+      ];
+    }
+    if (style === 'passive') {
+      // 데이터센터 패시브 (L40S · RTX PRO 6000 서버 에디션)
+      B(th * 0.8, h, len - 0.32, M.pt, 0.02, 0, -0.16, P);
+      B(th * 0.8, 0.02, 0.32, M.pt, 0.02, h / 2 - 0.01, len / 2 - 0.16, P);
+      B(th * 0.8, 0.02, 0.32, M.pt, 0.02, -h / 2 + 0.01, len / 2 - 0.16, P);
+      for (let i = 0; i < 12; i++)
+        B(0.006, h * 0.9, 0.3, M.ptL, 0.02 - th * 0.38 + i * ((th * 0.76) / 11), 0, len / 2 - 0.16, P);
+      B(0.004, 0.05, len * 0.5, M.white, fx + 0.003, h * 0.32, -len * 0.12, P);
+      B(0.12, 0.14, 0.05, M.black, 0.02, h * 0.3, len / 2 + 0.025, P);
+    } else if (style === 'blower') {
+      // 서버용 블로워
+      B(th * 0.8, h, len, M.pt, 0.02, 0, 0, P);
+      B(0.004, 0.05, len * 0.6, M.white, fx + 0.003, h * 0.38, -len * 0.1, P);
+      fan(F(fx + 0.03, -h * 0.05, len / 2 - h * 0.4, 0, Math.PI / 2, 0, P), h * 0.62, 0.05, true);
+      B(0.1, 0.05, 0.22, M.black, 0.02, h / 2 + 0.025, len * 0.1, P);
+    } else {
+      // 워크스테이션 듀얼 액시얼 (RTX 5090 · RTX PRO 6000 워크스테이션)
+      B(th * 0.8, h, len, M.pt, 0.02, 0, 0, P);
+      B(th * 0.82, 0.03, len * 0.99, M.ptL, 0.02, h / 2 - 0.015, 0, P);
+      B(th * 0.82, 0.03, len * 0.99, M.ptL, 0.02, -h / 2 + 0.015, 0, P);
+      B(th * 0.4, 0.008, len * 0.55, M.blue, 0.02, h / 2 + 0.004, -len * 0.05, P);
+      B(0.01, h * 0.92, len * 0.2, M.black, fx + 0.005, 0, 0, P);
+      for (const s of [-1, 1]) fan(F(fx + 0.035, 0, s * len * 0.28, 0, Math.PI / 2, 0, P), h * 0.78, 0.06, true);
+      B(0.1, 0.05, 0.22, M.black, 0.02, h / 2 + 0.025, len * 0.08, P);
+    }
+    return null;
+  }
+  function psu(P, w, h, len) {
+    // 후면 -z
+    B(w, h, len, M.steel, 0, 0, 0, P);
+    B(w * 0.98, h * 0.98, 0.01, M.black, 0, 0, -len / 2 - 0.005, P);
+    plane(w * 0.62, h * 0.72, meshMat(w * 0.62, h * 0.72, 0xc9ccd6), -w * 0.12, 0, -len / 2 - 0.012, P, 0, Math.PI, 0);
+    B(0.04, h * 0.62, 0.04, M.black, w / 2 - 0.08, 0, -len / 2 - 0.12, P);
+    Cs(0.018, 0.1, M.black, w / 2 - 0.08, h * 0.28, -len / 2 - 0.06, P, Math.PI / 2, 0, 0);
+    Cs(0.018, 0.1, M.black, w / 2 - 0.08, -h * 0.28, -len / 2 - 0.06, P, Math.PI / 2, 0, 0);
+    B(0.03, 0.03, 0.012, M.led, -w / 2 + 0.07, h / 2 - 0.07, -len / 2 - 0.014, P);
+    B(w * 0.6, 0.004, len * 0.5, M.white, 0, h / 2 + 0.002, 0.1, P);
+    for (let i = 0; i < 4; i++) B(0.04, 0.03, 0.05, M.black, -w / 2 + 0.15 + i * 0.12, h / 2 - 0.1, len / 2 + 0.025, P);
+  }
+  function bay(P, w, h, on) {
+    // 2.5" U.2 핫스왑 베이
+    B(w * 0.94, h, 0.03, M.black, 0, 0, 0, P);
+    if (on) {
+      B(w * 0.78, h * 0.8, 0.02, M.dark, 0, -h * 0.03, 0.022, P);
+      B(w * 0.6, 0.07, 0.025, M.latch, 0, h * 0.41, 0.025, P);
+      for (let i = 0; i < 6; i++) B(w * 0.5, 0.012, 0.012, M.black, 0, -h * 0.3 + i * h * 0.1, 0.034, P); // 트레이 통풍 슬릿
+      B(0.028, 0.028, 0.012, M.led, -w * 0.2, -h * 0.44, 0.022, P);
+      B(0.028, 0.028, 0.012, M.ledOff, w * 0.2, -h * 0.44, 0.022, P);
+      B(0.012, h * 0.9, 1.02, M.steel, -w * 0.43, 0, -0.51, P);
+      B(0.012, h * 0.9, 1.02, M.steel, w * 0.43, 0, -0.51, P); // 캐리어 레일
+      B(w * 0.74, h * 0.86, 1.0, M.alu, 0, 0, -0.52, P);
+      B(w * 0.745, h * 0.5, 0.5, M.white, 0, h * 0.05, -0.4, P); // U.2 SSD 바디 · 라벨
+      B(w * 0.6, h * 0.2, 0.03, M.black, 0, -h * 0.2, -1.035, P);
+      for (let i = 0; i < 6; i++) B(0.008, h * 0.1, 0.01, M.gold, -w * 0.22 + i * w * 0.09, -h * 0.2, -1.05, P);
+    } else B(w * 0.6, h * 0.7, 0.01, M.ledOff, 0, 0, 0.018, P);
+  }
+  function hdd(P) {
+    // 3.5" HDD 147 × 101.6 × 26.1mm, 정면 +z
+    B(1.0, 0.17, 1.47, M.alu, 0, -0.035, -0.735, P);
+    B(0.96, 0.07, 1.43, M.steel, 0, 0.085, -0.735, P); // 다이캐스트 바디 + 상판
+    B(0.74, 0.006, 1.0, M.white, -0.05, 0.123, -0.68, P);
+    B(0.3, 0.007, 0.12, M.chip, 0.12, 0.124, -0.4, P);
+    for (let i = 0; i < 3; i++) B(0.5, 0.007, 0.025, M.dark, -0.1, 0.124, -0.95 - i * 0.05, P); // 라벨 · 바코드
+    C(0.06, 0.012, M.steel, -0.25, 0.126, -1.25, P);
+    for (const z of [-0.2, -0.75, -1.3])
+      for (const s of [-1, 1]) Cs(0.022, 0.02, M.dark, s * 0.5, -0.02, z, P, 0, 0, Math.PI / 2); // 상판 나사 · 측면 장착홀
+    B(0.86, 0.02, 1.2, M.pcb, 0, -0.13, -0.8, P);
+    for (let i = 0; i < 8; i++) B(0.04, 0.012, 0.04, M.chip, -0.3 + i * 0.08, -0.144, -0.6 - (i % 3) * 0.2, P); // 하단 PCB
+    B(0.22, 0.06, 0.03, M.black, 0.26, -0.06, -1.48, P);
+    B(0.12, 0.06, 0.03, M.black, -0.02, -0.06, -1.48, P);
+    for (let i = 0; i < 7; i++) B(0.012, 0.03, 0.01, M.gold, 0.18 + i * 0.024, -0.06, -1.495, P);
+  }
+  function hddBay(P, on) {
+    // 핫스왑 트레이
+    B(1.0, 0.27, 0.03, M.black, 0, 0, 0, P);
+    if (on) {
+      B(0.86, 0.2, 0.02, M.dark, -0.04, 0, 0.022, P);
+      B(0.18, 0.07, 0.025, M.latch, 0.38, 0.04, 0.026, P);
+      B(0.028, 0.028, 0.012, M.led, 0.38, -0.07, 0.024, P);
+      hdd(F(0, 0, -0.03, 0, 0, 0, P));
+    } else B(0.8, 0.16, 0.01, M.ledOff, 0, 0, 0.018, P);
+  }
+  function reservoir(x, y0, z, rh) {
+    if (LOOP === 'aio') {
+      // 일체형: 리저버 대신 펌프 유닛(호스가 반드시 여기서 시작 · 끝나도록)
+      const top = y0 + 0.28,
+        up = V(0, 1, 0);
+      B(0.36, 0.26, 0.36, M.black, x, y0 + 0.13, z);
+      B(0.3, 0.02, 0.3, M.pt, x, top - 0.01, z);
+      C(0.08, 0.03, M.ptL, x, top + 0.005, z);
+      for (let i = 0; i < 4; i++) Cs(0.015, 0.02, M.alu, x + (i % 2 ? 0.13 : -0.13), top, z + (i < 2 ? 0.13 : -0.13));
+      return {
+        top,
+        a: { p: V(x - 0.09, top, z), d: up },
+        b: { p: V(x + 0.09, top, z), d: up },
+        side: (y) => ({ p: V(x, Math.min(Math.max(y, y0 + 0.08), top - 0.08), z - 0.18), d: V(0, 0, -1) }),
+      };
+    }
+    B(0.38, 0.18, 0.38, M.pt, x, y0 + 0.09, z);
+    C(0.17, rh, M.acryl, x, y0 + 0.18 + rh / 2, z);
+    C(0.135, rh * 0.8, M.coolant, x, y0 + 0.18 + rh * 0.42, z);
+    C(0.185, 0.035, M.chrome, x, y0 + 0.2, z);
+    C(0.185, 0.035, M.chrome, x, y0 + 0.16 + rh, z);
+    const top = y0 + 0.18 + rh,
+      up = V(0, 1, 0);
+    return {
+      top,
+      a: { p: V(x - 0.08, top, z), d: up },
+      b: { p: V(x + 0.08, top, z), d: up },
+      side: (y) => ({ p: V(x, y, z - 0.17), d: V(0, 0, -1) }),
+    };
+  }
+
+  // ── 랙마운트: 19" EIA-310 (본체 폭 438 · 이어 포함 482.6), 깊이 800, 1U = 44.45mm ──
+  function buildRack(cfg, w) {
+    LOOP = cfg.loop || 'custom';
+    const W = S.w / 100,
+      H = S.h / 100,
+      D = S.d / 100,
+      U = S.u,
+      fz = D / 2,
+      t = 0.015;
+    const wCpu = w === 'cpu' || w === 'both',
+      wGpu = w === 'gpu' || w === 'both';
+    bounds = { w: 4.826, h: H, d: D };
+    target.set(0, H / 2, 0);
+    CAT = 'chassis';
+    B(W, 0.02, D, M.chassis, 0, 0.01, 0);
+    outline(W, 0.02, D, 0, 0.01, 0, M.edgeSoft);
+    for (const s of [-1, 1]) {
+      B(0.03, 0.05, D, M.steel, s * (W / 2 - 0.015), H - 0.025, 0);
+      B(0.03, 0.07, D, M.steel, s * (W / 2 - 0.015), 0.045, 0);
+    }
+    glassBox(t, H, D, -W / 2, H / 2, 0);
+    glassBox(t, H, D, W / 2, H / 2, 0);
+    glassBox(W, t, D, 0, H, 0);
+    glassBox(W, H, t, 0, H / 2, -D / 2);
+    for (const bz of [fz - 1.55, -0.2]) {
+      B(W - 0.04, 0.025, 0.16, M.steel, 0, H - 0.03, bz);
+      for (let i = 0; i < 18; i++) Cs(0.022, 0.03, M.chip, -W / 2 + 0.3 + (i * (W - 0.6)) / 17, H - 0.03, bz);
+    }
+    // 랙 이어 · 손잡이 · 컨트롤
+    for (const s of [-1, 1]) {
+      const ex = s * (W / 2 + 0.11),
+        hh = Math.min(H * 0.62, 1.1),
+        hx = ex + s * 0.045;
+      B(0.22, H, 0.04, M.chassis, ex, H / 2, fz - 0.02);
+      outline(0.22, H, 0.04, ex, H / 2, fz - 0.02, M.edgeSoft);
+      B(0.04, hh, 0.04, M.alu, hx, H / 2, fz + 0.14);
+      Cs(0.02, 0.12, M.alu, hx, H / 2 + hh / 2 - 0.03, fz + 0.08, null, Math.PI / 2, 0, 0);
+      Cs(0.02, 0.12, M.alu, hx, H / 2 - hh / 2 + 0.03, fz + 0.08, null, Math.PI / 2, 0, 0);
+      if (H > 1) {
+        Cs(0.024, 0.02, M.alu, ex, 0.1, fz + 0.005, null, Math.PI / 2, 0, 0);
+        Cs(0.024, 0.02, M.alu, ex, H - 0.1, fz + 0.005, null, Math.PI / 2, 0, 0);
+      }
+    }
+    const cx = W / 2 + 0.055;
+    C(0.035, 0.03, M.blue, cx, H / 2 + 0.12, fz + 0.01, null, Math.PI / 2, 0, 0);
+    Cs(0.022, 0.02, M.black, cx, H / 2 - 0.14, fz + 0.01, null, Math.PI / 2, 0, 0);
+    B(0.024, 0.024, 0.012, M.led, cx, H / 2 + 0.01, fz + 0.006);
+    B(0.024, 0.024, 0.012, M.ledOff, cx, H / 2 - 0.05, fz + 0.006);
+    // 전면: 핫스왑 베이 + 타공 그릴
+    const bw = 0.19,
+      bh = 0.75,
+      by = 0.065 + bh / 2,
+      nB = U === 2 ? 12 : 16,
+      bx0 = U === 2 ? -W / 2 + 0.06 : (-nB * bw) / 2;
+    CAT = 'disk';
+    for (let i = 0; i < nB; i++) bay(F(bx0 + bw * (i + 0.5), by, fz), bw, bh, i < cfg.disk);
+    CAT = 'chassis';
+    if (U === 2) {
+      const mx0 = bx0 + nB * bw + 0.03,
+        mw = W / 2 - 0.04 - mx0;
+      plane(mw, H - 0.1, meshMat(mw, H - 0.1), mx0 + mw / 2, H / 2, fz - 0.005);
+      if (cfg.hdd) {
+        CAT = 'disk';
+        for (let i = 0; i < 4; i++) hddBay(F(mx0 + 0.5 + (i % 2) * 1.0, 0.23 + Math.floor(i / 2) * 0.3, fz), i < cfg.hdd);
+        CAT = 'chassis';
+      } else {
+        B(0.14, 0.055, 0.02, M.latch, mx0 + 0.14, 0.17, fz);
+        B(0.14, 0.055, 0.02, M.latch, mx0 + 0.32, 0.17, fz);
+      }
+    } else {
+      const sw = (W - nB * bw) / 2 - 0.04,
+        mh = H - bh - 0.16;
+      for (const s of [-1, 1]) plane(sw, bh, meshMat(sw, bh), s * ((nB * bw) / 2 + 0.02 + sw / 2), by, fz - 0.005);
+      plane(W - 0.08, mh, meshMat(W - 0.08, mh), 0, 0.065 + bh + 0.05 + mh / 2, fz - 0.005);
+      if (cfg.hdd) {
+        CAT = 'disk';
+        for (let i = 0; i < 8; i++)
+          hddBay(F(-1.5 + (i % 4) * 1.0, 0.065 + bh + 0.2 + Math.floor(i / 4) * 0.3, fz), i < cfg.hdd);
+        CAT = 'chassis';
+      }
+    }
+    // 팬 월 (공냉 80mm 핫스왑 / 수냉 120mm + 라디에이터)
+    CAT = 'cool';
+    const fzw = fz - (cfg.hdd ? 1.7 : 1.15),
+      radZ = fzw - 0.3,
+      rows = [];
+    let fs, per;
+    if (U === 6 || (w !== 'none' && U >= 4)) {
+      fs = 1.2;
+      per = 3;
+      const n = Math.max(1, Math.floor((H - 0.1) / 1.25));
+      for (let r = 0; r < n; r++) rows.push(0.07 + fs / 2 + r * 1.25);
+    } else {
+      fs = 0.8;
+      per = 5;
+      const n = Math.max(1, Math.floor((H - 0.06) / 0.84));
+      for (let r = 0; r < n; r++) rows.push(0.06 + fs / 2 + r * 0.84);
+    }
+    const m0 = per === 3 ? 0.2 : 0.1,
+      pitch = (W - 2 * m0) / per;
+    rows.forEach((y) => {
+      for (let i = 0; i < per; i++) {
+        const x = -W / 2 + m0 + pitch * (i + 0.5);
+        fan(F(x, y, fzw), fs, 0.25, false, true);
+        if (per === 5 && y + fs / 2 + 0.03 < H) B(0.18, 0.025, 0.07, M.latch, x, y + fs / 2 + 0.013, fzw + 0.08);
+      }
+    });
+    B(W - 0.04, 0.03, 0.34, M.steel, 0, 0.035, fzw);
+    const fTop = rows[rows.length - 1] + fs / 2 + 0.02;
+    if (H - fTop > 0.15) {
+      const fh = H - fTop - 0.04;
+      plane(W - 0.06, fh, meshMat(W - 0.06, fh, 0xc9ccd6), 0, fTop + fh / 2, fzw + 0.13);
+    }
+    let radL, radR;
+    if (w !== 'none')
+      rows.forEach((y) => {
+        const rp = radiator(F(0, y, radZ), W - 0.3, fs, 0.3);
+        radL = rp.L;
+        radR = rp.R;
+      });
+    // 메인보드 · CPU · 메모리 (DDR5 12채널 = 소켓당 12슬롯)
+    CAT = 'board';
+    const bz0 = fzw - 0.38,
+      bz1 = -D / 2 + 0.1,
+      cz = fzw - 1.25;
+    B(W - 0.3, 0.02, bz0 - bz1, M.pcb, 0, 0.07, (bz0 + bz1) / 2);
+    boardDetail(F(0, 0.08, (bz0 + bz1) / 2), W - 0.3, bz0 - bz1, [[-1.9, 1.9, -1.1, 0.6]]);
+    const socks = cfg.sockets === 2 ? [-1.05, 1.05] : [0],
+      perS = Math.min(12, Math.max(2, Math.round(cfg.ram / 64 / socks.length)));
+    const hh = Math.min(1.0, H - 0.25),
+      cpuPorts = [];
+    socks.forEach((sx) => {
+      CAT = 'cpu';
+      const P = F(sx, 0.08, cz);
+      socket(P);
+      if (wCpu) cpuPorts.push(cpuWater(P));
+      else cpuAirServer(P, hh);
+      CAT = 'ram';
+      const order = [];
+      for (let k = 0; k < 6; k++) order.push([-1, k], [1, k]);
+      order.forEach(([s, k], i) => {
+        const Q = F(sx + s * (0.56 + k * 0.076), 0.08, cz);
+        dimmSlot(Q);
+        if (i < perS) dimm(Q, false);
+      });
+      CAT = 'board';
+      B(0.7, 0.1, 0.24, M.dark, sx, 0.13, cz - 0.62);
+      for (let f = 0; f < 10; f++) B(0.006, 0.1, 0.24, M.alu, sx - 0.33 + f * 0.073, 0.23, cz - 0.62);
+      for (let c = 0; c < 6; c++) Cs(0.035, 0.08, M.black, sx - 0.25 + c * 0.1, 0.12, cz - 0.82);
+    });
+    B(0.22, 0.015, 0.8, M.dark, 0, 0.085, cz - 1.25);
+    B(0.18, 0.004, 0.3, M.latch, 0, 0.094, cz - 1.25);
+    if (U >= 4)
+      for (const s of [-1, 1]) {
+        B(0.5, 0.05, 0.5, M.copper, s * 0.6, 0.105, -0.75);
+        for (let f = 0; f < 14; f++) B(0.006, 0.25, 0.5, M.alu, s * 0.6 - 0.24 + f * 0.037, 0.255, -0.75);
+      }
+    // GPU (FHFL 267 × 111mm, 듀얼 슬롯)
+    CAT = 'gpu';
+    const lk = cfg.gpuLook || 'passive',
+      style = lk === 'axial' ? 'blower' : lk === 'lp' ? 'passive' : lk,
+      len = lk === 'lp' ? 1.68 : 2.67,
+      gh = lk === 'lp' ? 0.69 : 1.11,
+      th = lk === 'lp' || cfg.gpuSlim ? 0.2 : 0.38,
+      gz = -D / 2 + 0.06 + len / 2,
+      gPorts = [],
+      cardX = [];
+    if (U === 2) {
+      [
+        [1.1, 0],
+        [-1.1, 0],
+        [1.1, 1],
+        [-1.1, 1],
+      ]
+        .slice(0, cfg.count)
+        .forEach(([x, l]) =>
+          gPorts.push(
+            gpu(F(x, 0.1 + th / 2 + l * (th + 0.02), gz, 0, 0, x < 0 ? Math.PI / 2 : -Math.PI / 2), {
+              len,
+              h: gh,
+              th,
+              water: wGpu,
+              style,
+            }),
+          ),
+        );
+      CAT = 'board';
+      for (let i = 0; i < 2; i++) psu(F(0, 0.23 + i * 0.41, -D / 2 + 0.95), 0.735, 0.39, 1.85);
+    } else {
+      const slots = [3, 4, 2, 5, 1, 6, 0, 7].slice(0, cfg.count).sort((m, n) => m - n); // 가운데부터 바깥으로 채움 → 수량을 늘려도 기존 카드 위치 유지
+      slots.forEach((sl) => {
+        const x = -1.47 + sl * 0.42;
+        cardX.push(x);
+        B(0.075, 0.06, 0.89, M.black, x, 0.11, -D / 2 + 0.06 + 0.42 + 0.445);
+        gPorts.push(gpu(F(x, 0.14 + gh / 2, gz), { len, h: gh, th, water: wGpu, style }));
+      });
+      B(W - 0.1, 0.04, 0.1, M.steel, 0, 0.14 + gh + 0.08, gz + len / 2 - 0.15);
+      CAT = 'board';
+      for (let i = 0; i < 4; i++) psu(F(W / 2 - 0.06 - 0.74 * i - 0.37, H - 0.24, -D / 2 + 0.95), 0.735, 0.39, 1.85);
+      const iy = H - 0.24,
+        iz = -D / 2 - 0.007;
+      B(1.2, 0.34, 0.012, M.steel, -W / 2 + 0.75, iy, iz);
+      [-1.85, -1.66].forEach((x) => {
+        B(0.16, 0.13, 0.02, M.black, x, iy, iz - 0.01);
+        B(0.03, 0.02, 0.01, M.led, x - 0.05, iy + 0.05, iz - 0.021);
+      });
+      B(0.13, 0.05, 0.02, M.latch, -1.42, iy + 0.05, iz - 0.01);
+      B(0.13, 0.05, 0.02, M.latch, -1.42, iy - 0.05, iz - 0.01);
+      B(0.3, 0.11, 0.02, M.latch, -1.1, iy, iz - 0.01);
+    }
+    // 네트워크 카드
+    CAT = 'net';
+    const nN = cfg.netCards || 0;
+    for (let i = 0; i < nN; i++) {
+      const x = (i ? 1 : -1) * (W / 2 - 0.2);
+      B(0.075, 0.06, 0.9, M.black, x, 0.11, -D / 2 + 0.56);
+      nic(F(x, 0.14 + 0.345, -D / 2 + 0.06 + 0.84), cfg.net);
+    }
+    // 수냉 루프: 리저버 → CPU(직렬) → 라디에이터 → GPU 매니폴드 → 리저버
+    CAT = 'cool';
+    if (w !== 'none') {
+      const rx = W / 2 - 0.55,
+        rz = -0.5,
+        res = reservoir(rx, 0.02, rz, U === 2 ? 0.38 : Math.min(1.2, H - 0.5));
+      const lineY = Math.min(H - 0.09, Math.max(res.top + 0.14, 0.75)),
+        yHi = Math.min(H - 0.07, lineY + 0.12);
+      if (wCpu) {
+        const cs = cpuPorts.slice().reverse(),
+          c0 = cs[0];
+        pipe(
+          res.a,
+          [
+            [res.a.p.x, lineY, res.a.p.z],
+            [res.a.p.x, lineY, cz],
+            [c0[0].p.x, lineY, cz],
+          ],
+          c0[0],
+        );
+        if (cs.length === 2)
+          pipe(
+            c0[1],
+            [
+              [c0[1].p.x, lineY, cz],
+              [cs[1][0].p.x, lineY, cz],
+            ],
+            cs[1][0],
+          );
+        const last = cs[cs.length - 1][1];
+        pipe(
+          last,
+          [
+            [last.p.x, lineY, cz],
+            [last.p.x, lineY, radL.p.z - 0.14],
+            [radL.p.x, lineY, radL.p.z - 0.14],
+          ],
+          radL,
+        );
+      } else
+        pipe(
+          res.a,
+          [
+            [res.a.p.x, lineY, res.a.p.z],
+            [res.a.p.x, lineY, radL.p.z - 0.14],
+            [radL.p.x, lineY, radL.p.z - 0.14],
+          ],
+          radL,
+        );
+      if (wGpu) {
+        const ps = gPorts.flat();
+        ps.forEach(fitting);
+        let A, Bq;
+        if (U === 2) {
+          const side = (s) => ps.filter((q) => Math.sign(q.d.x) === s),
+            bar = (s) => {
+              const l = side(s);
+              if (!l.length) return null;
+              const bx = l[0].p.x + s * 0.2,
+                mz = (l[0].p.z + l[1].p.z) / 2;
+              B(0.2, 0.74, 0.3, M.acryl, bx, 0.475, mz);
+              B(0.08, 0.66, 0.12, M.coolant, bx, 0.475, mz);
+              B(0.22, 0.03, 0.32, M.chrome, bx, 0.1, mz);
+              B(0.22, 0.03, 0.32, M.chrome, bx, 0.85, mz);
+              return { bx, mz };
+            };
+          const r = bar(1),
+            l = bar(-1),
+            fwd = V(0, 0, 1);
+          A = { p: V(r.bx, 0.66, r.mz + 0.15), d: fwd };
+          Bq = { p: V(r.bx, 0.3, r.mz + 0.15), d: fwd };
+          if (l)
+            pipe(
+              { p: V(l.bx, 0.48, l.mz + 0.15), d: fwd },
+              [
+                [l.bx, 0.48, -1.05],
+                [r.bx, 0.48, -1.05],
+              ],
+              { p: V(r.bx, 0.48, r.mz + 0.15), d: fwd },
+            );
+        } else {
+          const py = ps[0].p.y,
+            mz = (ps[0].p.z + ps[1].p.z) / 2,
+            x0m = Math.min(...cardX) - 0.25,
+            x1m = Math.max(...cardX) + 0.25,
+            my = py + 0.2,
+            fwd = V(0, 0, 1);
+          B(x1m - x0m, 0.2, 0.3, M.acryl, (x0m + x1m) / 2, my, mz);
+          B(x1m - x0m - 0.06, 0.07, 0.12, M.coolant, (x0m + x1m) / 2, my, mz);
+          B(0.03, 0.22, 0.32, M.chrome, x0m, my, mz);
+          B(0.03, 0.22, 0.32, M.chrome, x1m, my, mz);
+          A = { p: V(x1m - 0.3, my, mz + 0.15), d: fwd };
+          Bq = { p: V(x1m - 0.08, my, mz + 0.15), d: fwd };
+        }
+        const a1 = ext(A),
+          rz1 = radR.p.z - 0.14,
+          yD = Math.min(H - 0.07, Math.max(a1.y, lineY + 0.12));
+        pipe(
+          radR,
+          [
+            [a1.x, radR.p.y, rz1],
+            [a1.x, yD, rz1],
+            [a1.x, yD, a1.z],
+          ],
+          A,
+        );
+        const b1 = ext(Bq),
+          inq = res.side(Math.min(b1.y, res.top - 0.12)),
+          ie = ext(inq);
+        pipe(
+          Bq,
+          [
+            [b1.x, b1.y, ie.z],
+            [ie.x, b1.y, ie.z],
+          ],
+          inq,
+        );
+      } else {
+        const rb = res.b.p,
+          rz1 = radR.p.z - 0.14;
+        pipe(
+          radR,
+          [
+            [radR.p.x, yHi, rz1],
+            [rb.x, yHi, rz1],
+            [rb.x, yHi, rb.z],
+          ],
+          res.b,
+        );
+      }
+    }
+    flush();
+  }
+
+  // ── 타워: 풀 타워 250×560×560 (E-ATX 305×330) · 미들 타워 230×490×480 (ATX 305×244) ──
+  function buildTower(cfg, w) {
+    LOOP = cfg.loop || 'custom';
+    if (cfg.size === 'full') {
+      const rg = realChassis('tw');
+      if (rg) return buildTowerReal(cfg, w, rg);
+    }
+    const W = S.w / 100,
+      H = S.h / 100,
+      D = S.d / 100,
+      y0 = 0.05,
+      full = S.d >= 550,
+      Y = H + y0;
+    const wCpu = w === 'cpu' || w === 'both',
+      wGpu = w === 'gpu' || w === 'both';
+    bounds = { w: W, h: H, d: D };
+    target.set(0, H * 0.46 + y0, 0);
+    CAT = 'chassis';
+    // 섀시 · 강화유리 사이드 · 메쉬 전면
+    for (const sx of [-1, 1])
+      for (const sz of [-1, 1]) B(0.45, 0.05, 0.28, M.black, sx * (W / 2 - 0.32), 0.025, sz * (D / 2 - 0.35));
+    B(W, 0.03, D, M.chassis, 0, y0 + 0.015, 0);
+    outline(W, 0.03, D, 0, y0 + 0.015, 0, M.edgeSoft);
+    B(0.02, H, D, M.chassis, -W / 2 + 0.01, H / 2 + y0, 0);
+    outline(0.02, H, D, -W / 2 + 0.01, H / 2 + y0, 0, M.edgeSoft);
+    B(W, H, 0.02, M.chassis, 0, H / 2 + y0, -D / 2 + 0.01);
+    glassBox(0.015, H - 0.06, D - 0.06, W / 2, H / 2 + y0, 0);
+    glassBox(W, 0.015, D, 0, Y, 0);
+    B(0.02, 0.05, D, M.black, W / 2, y0 + 0.03, 0);
+    B(0.02, 0.05, D, M.black, W / 2, Y - 0.03, 0);
+    B(0.02, H, 0.05, M.black, W / 2, H / 2 + y0, D / 2 - 0.025);
+    B(0.02, H, 0.05, M.black, W / 2, H / 2 + y0, -D / 2 + 0.025);
+    for (const s of [-1, 1]) B(0.08, H, 0.06, M.chassis, s * (W / 2 - 0.04), H / 2 + y0, D / 2);
+    B(W, 0.08, 0.06, M.chassis, 0, y0 + 0.04, D / 2);
+    B(W, 0.14, 0.06, M.chassis, 0, Y - 0.07, D / 2);
+    plane(W - 0.16, H - 0.22, meshMat(W - 0.16, H - 0.22, 0xc9ccd6), 0, H / 2 + y0 - 0.03, D / 2 + 0.02);
+    C(0.05, 0.02, M.blue, -W / 2 + 0.35, Y - 0.07, D / 2 + 0.035, null, Math.PI / 2, 0, 0);
+    B(0.13, 0.05, 0.02, M.black, 0.2, Y - 0.07, D / 2 + 0.03);
+    B(0.13, 0.05, 0.02, M.black, 0.4, Y - 0.07, D / 2 + 0.03);
+    // PSU 쉬라우드 · 파워
+    B(W - 0.04, 0.02, D - 0.12, M.chassis, 0, y0 + 0.92, -0.06);
+    B(0.02, 0.9, D - 0.12, M.chassis, W / 2 - 0.04, y0 + 0.47, -0.06);
+    B(1.5, 0.86, 1.8, M.steel, -W / 2 + 0.8, y0 + 0.48, -D / 2 + 0.95);
+    plane(1.2, 0.6, meshMat(1.2, 0.6, 0xc9ccd6), -W / 2 + 0.8, y0 + 0.48, -D / 2 - 0.012, null, 0, Math.PI, 0);
+    B(0.22, 0.13, 0.02, M.black, -W / 2 + 0.3, y0 + 0.3, -D / 2 - 0.01);
+    // 메인보드 (+x 방향으로 부품이 올라오는 세로 장착)
+    CAT = 'board';
+    const x0 = -W / 2 + 0.12,
+      bd = full ? 3.3 : 2.44,
+      bTop = Y - 0.35,
+      bBot = bTop - 3.05,
+      zb = -D / 2 + 0.15 + bd / 2;
+    B(0.016, 3.05, bd, M.pcb, x0, bTop - 1.525, zb);
+    const Pb = F(x0, 0, 0, 0, 0, -Math.PI / 2),
+      onB = (y, z, ry = 0) => F(-y, 0.008, z, 0, ry, 0, Pb);
+    // CPU: 풀 타워(E-ATX/SSI EEB)는 듀얼 소켓 가능 - 소켓을 앞뒤로 배치
+    const dual = cfg.sockets === 2 && full,
+      rel = zb - bd / 2,
+      cy = bTop - 0.95;
+    const czs = dual ? [rel + 0.9, rel + 2.35] : [rel + (full ? 1.3 : 1.15)],
+      cz = czs[0];
+    CAT = 'cpu';
+    const cpuPs = [];
+    czs.forEach((z) => {
+      socket(onB(cy, z));
+      if (wCpu) cpuPs.push(cpuWater(onB(cy, z)));
+      else (dual ? coolerSingle : coolerTower)(onB(cy, z));
+    });
+    CAT = 'ram';
+    const nD = Math.min(full ? 8 : 4, Math.max(2, cfg.ram / 64)),
+      rear = !dual && nD > 4;
+    if (dual)
+      czs.forEach((z) => {
+        for (let k = 0; k < 4; k++) {
+          const Q = onB(cy, z + 0.57 + k * 0.085, Math.PI / 2);
+          dimmSlot(Q);
+          if (k < Math.ceil(nD / 2)) dimm(Q, true);
+        }
+      });
+    else {
+      for (let k = 0; k < 4; k++) {
+        const Q = onB(cy, cz + 0.62 + k * 0.085, Math.PI / 2);
+        dimmSlot(Q);
+        if (k < Math.min(4, nD)) dimm(Q, true);
+      }
+      if (rear)
+        for (let k = 0; k < 4; k++) {
+          const Q = onB(cy, cz - 0.62 - k * 0.085, Math.PI / 2);
+          dimmSlot(Q);
+          if (k < nD - 4) dimm(Q, true);
+        }
+    }
+    CAT = 'board';
+    czs.forEach((z) => {
+      B(0.22, 0.28, 1.2, M.dark, x0 + 0.12, cy + 0.78, z - 0.05);
+      B(0.004, 0.04, 1.15, M.latch, x0 + 0.232, cy + 0.78, z - 0.05);
+    });
+    if (!rear && !dual) B(0.22, 1.1, 0.28, M.dark, x0 + 0.12, cy + 0.05, cz - 0.76);
+    B(0.38, 1.5, 0.36, M.dark, x0 + 0.2, cy - 0.1, -D / 2 + 0.35);
+    B(0.005, 1.3, 0.03, M.blue, x0 + 0.392, cy - 0.1, -D / 2 + 0.35);
+    B(0.1, 0.55, 0.55, M.dark, x0 + 0.06, bBot + 0.7, zb + bd / 2 - 0.55);
+    // 후면 I/O · 슬롯 커버
+    B(0.44, 1.5, 0.01, M.steel, x0 + 0.25, cy - 0.1, -D / 2 - 0.006);
+    for (let i = 0; i < 6; i++)
+      B(
+        i < 2 ? 0.16 : 0.13,
+        i < 2 ? 0.13 : 0.055,
+        0.02,
+        i < 2 ? M.black : M.latch,
+        x0 + 0.25,
+        cy + 0.45 - i * 0.2,
+        -D / 2 - 0.016,
+      );
+    const slotY = (i) => bBot + 0.2 + (6 - i) * 0.2032,
+      used = cfg.gpuSlim
+        ? [0, 1, 2, 3, 4, 5, 6].slice(0, cfg.count)
+        : cfg.count === 1
+          ? [0]
+          : cfg.count === 2
+            ? [0, 2]
+            : [0, 2, 4, 6];
+    // GPU (워크스테이션: 304 × 137mm 듀얼 액시얼 / L40S 267 × 111mm 패시브)
+    CAT = 'gpu';
+    const lk = cfg.gpuLook || 'axial',
+      ax = lk === 'axial',
+      len = ax ? 3.04 : 2.67,
+      gh = ax ? 1.37 : 1.11,
+      th = wGpu || cfg.gpuSlim ? 0.22 : 0.4,
+      gz = -D / 2 + 0.06 + len / 2,
+      gPorts = [],
+      occ = new Set();
+    used.forEach((i) => {
+      occ.add(i);
+      if (!cfg.gpuSlim) occ.add(i + 1);
+      const y = slotY(i);
+      B(0.065, 0.075, 0.89, M.steel, x0 + 0.04, y, -D / 2 + 0.94);
+      gPorts.push(
+        gpu(F(x0 + 0.01 + gh / 2, y - th / 2 + 0.03, gz, 0, 0, -Math.PI / 2), {
+          len,
+          h: gh,
+          th,
+          water: wGpu,
+          style: ax ? 'axial' : lk,
+        }),
+      );
+    });
+    CAT = 'net';
+    if (cfg.netCards) {
+      const ns = [6, 5, 4, 3, 2].find((i) => !occ.has(i));
+      if (ns !== undefined) {
+        occ.add(ns);
+        nic(F(x0 + 0.01 + 0.345, slotY(ns) - 0.08, -D / 2 + 0.06 + 0.84, 0, 0, -Math.PI / 2), cfg.net);
+      }
+    }
+    CAT = 'gpu';
+    for (let i = 0; i < 7; i++) {
+      if (!occ.has(i)) B(0.06, 0.07, 0.89, M.black, x0 + 0.04, slotY(i), -D / 2 + 0.94);
+      if (!occ.has(i)) B(1.0, 0.17, 0.012, M.steel, x0 + 0.6, slotY(i) - 0.1, -D / 2 - 0.01);
+    }
+    // 팬: 전면 흡기 3 · 상단 배기 · 후면 배기
+    // 2.5" U.2 SSD 케이지 (PSU 쉬라우드 안 전면)
+    CAT = 'disk';
+    const dx = W / 2 - 0.5,
+      dz = D / 2 - 0.85;
+    if (cfg.hdd) {
+      const hx = -W / 2 + 0.62,
+        hz = D / 2 - 0.2;
+      for (const s of [-1, 1]) B(0.03, 0.86, 1.55, M.steel, hx + s * 0.53, y0 + 0.47, hz - 0.76);
+      for (let i = 0; i < cfg.hdd; i++) hdd(F(hx, y0 + 0.18 + i * 0.28, hz));
+    }
+    for (const s of [-1, 1]) B(0.03, 0.82, 1.06, M.steel, dx + s * 0.39, y0 + 0.45, dz);
+    for (let i = 0; i < cfg.disk; i++) {
+      const yy = y0 + 0.1 + i * 0.1;
+      B(0.7, 0.07, 1.0, M.alu, dx, yy, dz);
+      B(0.5, 0.004, 0.5, M.white, dx, yy + 0.037, dz - 0.1);
+      B(0.04, 0.02, 0.02, M.led, dx + 0.25, yy, dz + 0.51);
+    }
+    CAT = 'cool';
+    const fs = full ? 1.4 : 1.2,
+      nF = Math.max(1, Math.floor((H - 1.1) / (fs + 0.05))),
+      rh = nF * (fs + 0.05) - 0.05,
+      ry = y0 + 1.0 + rh / 2;
+    for (let n = 0; n < nF; n++) fan(F(0.05, y0 + 1.0 + fs / 2 + n * (fs + 0.05), D / 2 - 0.18), fs);
+    for (let n = 0; n < (full ? 3 : 2); n++) fan(F(0.25, Y - 0.15, -D / 2 + 0.85 + n * 1.25, -Math.PI / 2, 0, 0), 1.2);
+    fan(F(0.05, cy, -D / 2 + 0.17, 0, Math.PI, 0), 1.2);
+    plane(1.15, 1.15, meshMat(1.15, 1.15, 0xc9ccd6), 0.05, cy, -D / 2 - 0.012, null, 0, Math.PI, 0);
+    // 수냉 루프: 리저버 → CPU → 전면 라디에이터 → GPU 브릿지 → 리저버
+    if (w !== 'none') {
+      const rad = radiator(F(0.05, ry, D / 2 - 0.5, 0, 0, Math.PI / 2), rh, fs + 0.04, 0.3),
+        pA = rad.T1.p.x < rad.T2.p.x ? rad.T1 : rad.T2,
+        pB = pA === rad.T1 ? rad.T2 : rad.T1;
+      const rx = W / 2 - 0.42,
+        rz = D / 2 - 1.05,
+        res = reservoir(rx, y0 + 0.93, rz, full ? 1.3 : 1.0),
+        ra = res.a.p;
+      if (wCpu) {
+        const cA = cpuPs[0],
+          cB = cpuPs[cpuPs.length - 1],
+          zB = czs[czs.length - 1];
+        pipe(
+          res.a,
+          [
+            [ra.x, cB[0].p.y, ra.z],
+            [ra.x, cB[0].p.y, zB],
+          ],
+          cB[0],
+        );
+        if (cpuPs.length === 2) {
+          const xL = x0 + 0.55,
+            zm = (czs[0] + czs[1]) / 2;
+          pipe(
+            cB[1],
+            [
+              [xL, cB[1].p.y, zB],
+              [xL, cB[1].p.y, zm],
+              [xL, cA[0].p.y, zm],
+              [xL, cA[0].p.y, czs[0]],
+            ],
+            cA[0],
+          );
+        }
+        pipe(
+          cA[1],
+          [
+            [pA.p.x, cA[1].p.y, czs[0]],
+            [pA.p.x, cA[1].p.y, pA.p.z - 0.14],
+          ],
+          pA,
+        );
+      } else
+        pipe(
+          res.a,
+          [
+            [ra.x, pA.p.y, ra.z],
+            [pA.p.x, pA.p.y, ra.z],
+          ],
+          pA,
+        );
+      if (wGpu) {
+        const ps = gPorts.flat();
+        ps.forEach(fitting);
+        const ys = ps.map((q) => q.p.y),
+          mz = (ps[0].p.z + ps[1].p.z) / 2,
+          bx = ps[0].p.x + 0.2,
+          yT = Math.max(...ys) + 0.2,
+          yB = Math.min(...ys) - 0.2;
+        B(0.2, yT - yB, 0.3, M.acryl, bx, (yT + yB) / 2, mz);
+        B(0.08, yT - yB - 0.1, 0.12, M.coolant, bx, (yT + yB) / 2, mz);
+        B(0.22, 0.03, 0.32, M.chrome, bx, yT, mz);
+        B(0.22, 0.03, 0.32, M.chrome, bx, yB, mz);
+        const bt = { p: V(bx, yT, mz), d: V(0, 1, 0) },
+          bb = { p: V(bx, yB, mz), d: V(0, -1, 0) },
+          yG = yT + 0.3;
+        pipe(
+          bt,
+          [
+            [bx, yG, mz],
+            [bx, yG, pB.p.z - 0.14],
+            [pB.p.x, yG, pB.p.z - 0.14],
+          ],
+          pB,
+        );
+        const inq = res.side(Math.min(res.top - 0.25, yB - 0.14)),
+          ie = ext(inq);
+        pipe(
+          bb,
+          [
+            [bx, ie.y, mz],
+            [bx, ie.y, ie.z],
+          ],
+          inq,
+        );
+      } else {
+        const rb = res.b.p;
+        pipe(
+          pB,
+          [
+            [pB.p.x, pB.p.y, rb.z],
+            [rb.x, pB.p.y, rb.z],
+          ],
+          res.b,
+        );
+      }
+    }
+    flush();
+  }
+
+  // ── 타워형 · 풀 타워: 실제 YJMOD 타워 섀시(TowerServer, 335 × 646 × 579mm) 기준 배치 ──
+  // 코드 좌표는 기존 타워와 같음(보드 -x, 부품 +x, 전면 +z). root를 x로 뒤집어 실제 제품 방향(전면에서 볼 때 보드가 오른쪽 벽)으로 표시.
+  // 실측(모델): 보드 트레이 x -0.30 · 확장 슬롯 15칸(맨 위 슬롯 상단 y 3.93, 간격 20.32mm) · 전면 120mm 팬 4개 · 후면 120mm 팬 1개
+  //            트레이 뒤쪽: 앞은 SSD · HDD 케이지(x -0.70 ~ -1.56, z 1.21 ~ 2.85), 뒤는 세로 ATX 파워 장착부 3칸
+  function buildTowerReal(cfg, w, real) {
+    MIR = true;
+    root.scale.x = -1;
+    const wCpu = w === 'cpu' || w === 'both',
+      wGpu = w === 'gpu' || w === 'both';
+    bounds = { w: 3.35, h: 6.46, d: 5.79 };
+    target.set(0, 3.1, 0);
+    CAT = 'chassis';
+    {
+      const m = new THREE.Mesh(real, M.shellLite);
+      m.userData.cat = 'chassis';
+      m.renderOrder = 2;
+      root.add(m);
+    }
+    // 옆판 · 전면 타공 메쉬는 내부가 보이도록 생략 (상판 타공 패널은 모델 그대로)
+    // 메인보드: 서버 보드 SSI-EEB 305 × 330mm (12" × 13") - 트레이 위 스탠드오프, 부품은 +x. 확장 슬롯 7칸이 보드 아래쪽에 오도록 배치
+    CAT = 'board';
+    const x0 = -0.28,
+      bd = 3.3,
+      bH = 3.05,
+      bTop = 5.55,
+      bBot = bTop - bH,
+      zBack = -2.43,
+      zb = zBack + bd / 2,
+      yc = bTop - bH / 2;
+    B(0.016, bH, bd, M.pcb, x0, yc, zb);
+    const Pb = F(x0, 0, 0, 0, 0, -Math.PI / 2),
+      onB = (y, z, ry = 0) => F(-y, 0.008, z, 0, ry, 0, Pb);
+    // 서버 보드: 소켓 1 · 2개(앞뒤), 소켓마다 DIMM 8개(양옆 4개씩)
+    const dual = cfg.sockets === 2,
+      cy = bTop - 0.95,
+      czs = dual ? [zBack + 0.95, zBack + 2.4] : [zBack + 1.25];
+    CAT = 'cpu';
+    const cpuPs = [];
+    czs.forEach((z) => {
+      socket(onB(cy, z));
+      if (wCpu) cpuPs.push(cpuWater(onB(cy, z)));
+      else (dual ? coolerSingle : coolerTower)(onB(cy, z));
+    });
+    CAT = 'ram';
+    const nD = Math.min(czs.length * 8, Math.max(2, cfg.ram / 64)),
+      per = Math.ceil(nD / czs.length);
+    czs.forEach((z) => {
+      for (let k = 0; k < 4; k++)
+        for (const sd of [-1, 1]) {
+          const Q = onB(cy, z + sd * (0.5 + k * 0.075), Math.PI / 2);
+          dimmSlot(Q);
+          if (k * 2 + (sd > 0 ? 0 : 1) < per) dimm(Q, false);
+        }
+    });
+    CAT = 'board';
+    czs.forEach((z) => {
+      B(0.2, 0.26, 1.05, M.dark, x0 + 0.11, cy + 0.8, z);
+      for (let f = 0; f < 7; f++) B(0.004, 0.22, 0.012, M.alu, x0 + 0.212, cy + 0.8, z - 0.45 + f * 0.15);
+    }); // VRM 방열판
+    boardDetail(onB(yc, zb), bH, bd, [
+      [yc - 4.0, 9, -9, 9],
+      [yc - (cy + 0.95), yc - (cy - 0.8), czs[0] - 0.85 - zb, czs[czs.length - 1] + 0.85 - zb],
+    ]);
+    B(0.18, 0.006, 0.18, M.chip, x0 + 0.012, bBot + 2.25, zb + bd / 2 - 0.35);
+    B(0.06, 0.004, 0.06, M.white, x0 + 0.016, bBot + 2.25, zb + bd / 2 - 0.35); // BMC (원격 관리 칩)
+    // 후면 I/O: 서버 보드(VGA · LAN 2 · IPMI LAN · USB)
+    B(0.44, 1.5, 0.01, M.steel, x0 + 0.25, cy - 0.1, -2.6);
+    for (let i = 0; i < 5; i++)
+      B(
+        i < 3 ? 0.16 : 0.13,
+        i < 3 ? 0.13 : 0.055,
+        0.02,
+        i < 3 ? M.black : M.latch,
+        x0 + 0.25,
+        cy + 0.45 - i * 0.22,
+        -2.61,
+      );
+    // 확장 슬롯: 섀시 15칸 중 보드 7칸(맨 위부터) 사용 - 슬롯 커버는 섀시 모델 그대로
+    const slotY = (i) => 3.927 - i * 0.2032 - 0.04,
+      used = cfg.gpuSlim
+        ? [0, 1, 2, 3, 4, 5, 6].slice(0, cfg.count)
+        : cfg.count === 1
+          ? [0]
+          : cfg.count === 2
+            ? [0, 2]
+            : [0, 2, 4, 6];
+    CAT = 'gpu';
+    const lk = cfg.gpuLook || 'axial',
+      ax = lk === 'axial',
+      len = ax ? 3.04 : 2.67,
+      gh = ax ? 1.37 : 1.11,
+      th = wGpu || cfg.gpuSlim ? 0.22 : 0.4,
+      gz = -2.48 + len / 2,
+      gPorts = [],
+      occ = new Set();
+    used.forEach((i) => {
+      occ.add(i);
+      if (!cfg.gpuSlim) occ.add(i + 1);
+      const y = slotY(i);
+      B(0.065, 0.075, 0.89, M.steel, x0 + 0.04, y, -1.6);
+      gPorts.push(
+        gpu(F(x0 + 0.01 + gh / 2, y - th / 2 + 0.03, gz, 0, 0, -Math.PI / 2), {
+          len,
+          h: gh,
+          th,
+          water: wGpu,
+          style: ax ? 'axial' : lk,
+        }),
+      );
+    });
+    CAT = 'net';
+    if (cfg.netCards) {
+      const ns = [6, 5, 4, 3, 2].find((i) => !occ.has(i));
+      if (ns !== undefined) {
+        occ.add(ns);
+        nic(F(x0 + 0.01 + 0.345, slotY(ns) - 0.08, -2.48 + 0.84, 0, 0, -Math.PI / 2), cfg.net);
+      }
+    }
+    CAT = 'gpu';
+    for (let i = 0; i < 7; i++) if (!occ.has(i)) B(0.06, 0.07, 0.89, M.black, x0 + 0.04, slotY(i), -1.6);
+    // 파워: 트레이 뒤 세로 ATX 장착부(아래 칸), GPU 4장 이상이면 가운데 칸에 한 대 더
+    CAT = 'board';
+    psu(F(-1.05, 1.625, -2.56 + 0.8), 0.86, 1.5, 1.6);
+    if (cfg.count >= 4) psu(F(-1.05, 3.525, -2.56 + 0.8), 0.86, 1.5, 1.6);
+    // 저장장치: 트레이 뒤 전면 케이지 - SSD · HDD 공용 3.5" 트레이 20칸, 전부 가로 장착. SSD는 위 칸부터, HDD는 아래 칸부터
+    CAT = 'disk';
+    const nSl = 20,
+      sy = (i) => 6.0 - i * 0.28,
+      sclX = new THREE.Matrix4().makeScale(0.9, 1, 1);
+    for (let i = 0; i < nSl; i++) {
+      const ssd = i < cfg.disk,
+        hd = i >= nSl - cfg.hdd,
+        P = F(-1.12, sy(i), 2.84);
+      B(0.92, 0.25, 0.03, M.black, 0, 0, 0, P); // 트레이 전면
+      if (ssd || hd) {
+        B(0.78, 0.18, 0.02, M.dark, -0.04, 0, 0.022, P);
+        B(0.16, 0.06, 0.025, M.latch, 0.34, 0.04, 0.026, P);
+        B(0.026, 0.026, 0.012, M.led, 0.34, -0.06, 0.024, P);
+        for (const sd of [-1, 1]) B(0.012, 0.2, 1.5, M.steel, sd * 0.45, 0, -0.76, P); // 트레이 레일
+        if (hd)
+          hdd(F(0, 0, -0.03, 0, 0, 0, P).multiply(sclX)); // 3.5" HDD
+        else {
+          B(0.7, 0.07, 1.0, M.alu, 0, -0.02, -0.55, P);
+          B(0.5, 0.004, 0.5, M.white, 0, 0.017, -0.45, P);
+          B(0.4, 0.03, 0.02, M.black, 0, -0.02, -1.06, P);
+        } // 2.5" U.2 SSD (3.5" 트레이 어댑터)
+      } else B(0.74, 0.15, 0.01, M.ledOff, 0, 0, 0.018, P);
+    }
+    // 팬: 전면 흡기 120mm × 4 · 후면 배기 120mm × 1 (섀시 팬 자리 실측)
+    CAT = 'cool';
+    const fys = [1.573, 2.773, 3.973, 5.173];
+    fys.forEach((y) => fan(F(0.79, y, 2.738), 1.2));
+    fan(F(0.896, 4.708, -2.42, 0, Math.PI, 0), 1.2);
+    // 수냉 루프: 리저버(앞쪽 바닥) → CPU → 전면 480mm 라디에이터 → GPU 브릿지 → 리저버
+    if (w !== 'none') {
+      const rad = radiator(F(0.79, 3.373, 2.45, 0, 0, Math.PI / 2), 4.9, 1.24, 0.3),
+        pA = rad.T1.p.x < rad.T2.p.x ? rad.T1 : rad.T2,
+        pB = pA === rad.T1 ? rad.T2 : rad.T1;
+      const res = reservoir(1.15, 0.62, 1.5, 1.3),
+        ra = res.a.p;
+      if (wCpu) {
+        const cA = cpuPs[0],
+          cB = cpuPs[cpuPs.length - 1],
+          zB = czs[czs.length - 1];
+        pipe(
+          res.a,
+          [
+            [ra.x, cB[0].p.y, ra.z],
+            [ra.x, cB[0].p.y, zB],
+          ],
+          cB[0],
+        );
+        if (cpuPs.length === 2) {
+          const xL = x0 + 0.55,
+            zm = (czs[0] + czs[1]) / 2;
+          pipe(
+            cB[1],
+            [
+              [xL, cB[1].p.y, zB],
+              [xL, cB[1].p.y, zm],
+              [xL, cA[0].p.y, zm],
+              [xL, cA[0].p.y, czs[0]],
+            ],
+            cA[0],
+          );
+        }
+        pipe(
+          cA[1],
+          [
+            [pA.p.x, cA[1].p.y, czs[0]],
+            [pA.p.x, cA[1].p.y, pA.p.z - 0.14],
+          ],
+          pA,
+        );
+      } else
+        pipe(
+          res.a,
+          [
+            [ra.x, pA.p.y, ra.z],
+            [pA.p.x, pA.p.y, ra.z],
+          ],
+          pA,
+        );
+      if (wGpu) {
+        const ps = gPorts.flat();
+        ps.forEach(fitting);
+        const ys = ps.map((q) => q.p.y),
+          mz = (ps[0].p.z + ps[1].p.z) / 2,
+          bx = ps[0].p.x + 0.2,
+          yT = Math.max(...ys) + 0.2,
+          yB = Math.min(...ys) - 0.2;
+        B(0.2, yT - yB, 0.3, M.acryl, bx, (yT + yB) / 2, mz);
+        B(0.08, yT - yB - 0.1, 0.12, M.coolant, bx, (yT + yB) / 2, mz);
+        B(0.22, 0.03, 0.32, M.chrome, bx, yT, mz);
+        B(0.22, 0.03, 0.32, M.chrome, bx, yB, mz);
+        const bt = { p: V(bx, yT, mz), d: V(0, 1, 0) },
+          bb = { p: V(bx, yB, mz), d: V(0, -1, 0) },
+          yG = yT + 0.3;
+        pipe(
+          bt,
+          [
+            [bx, yG, mz],
+            [bx, yG, pB.p.z - 0.14],
+            [pB.p.x, yG, pB.p.z - 0.14],
+          ],
+          pB,
+        );
+        const inq = res.side(Math.min(res.top - 0.25, yB - 0.14)),
+          ie = ext(inq);
+        pipe(
+          bb,
+          [
+            [bx, ie.y, mz],
+            [bx, ie.y, ie.z],
+          ],
+          inq,
+        );
+      } else {
+        const rb = res.b.p;
+        pipe(
+          pB,
+          [
+            [pB.p.x, pB.p.y, rb.z],
+            [rb.x, pB.p.y, rb.z],
+          ],
+          res.b,
+        );
+      }
+    }
+    flush();
+  }
+
+  // ── 랙마운트 조립형: 산업용 4U/6U 섀시 + 일반 SSI-EEB 보드 (RAM · GPU 슬롯이 한 보드에) ──
+  function buildRackDIY(cfg, w) {
+    LOOP = cfg.loop || 'custom';
+    const W = S.w / 100,
+      H = S.h / 100,
+      D = S.d / 100,
+      U = S.u,
+      fz = D / 2,
+      t = 0.015,
+      U2 = U === 2;
+    const wCpu = w === 'cpu' || w === 'both',
+      wGpu = w === 'gpu' || w === 'both';
+    bounds = { w: 4.826, h: H, d: D };
+    target.set(0, H / 2, 0);
+    CAT = 'chassis';
+    const real = realChassis(cfg.size);
+    if (real) {
+      const m = new THREE.Mesh(real, cfg.size === 'd4' ? M.shellLite : M.shell);
+      m.userData.cat = 'chassis';
+      m.renderOrder = 2;
+      root.add(m);
+    }
+    if (!real) {
+      B(W, 0.02, D, M.chassis, 0, 0.01, 0);
+      outline(W, 0.02, D, 0, 0.01, 0, M.edgeSoft);
+      for (const s of [-1, 1]) {
+        B(0.03, 0.05, D, M.steel, s * (W / 2 - 0.015), H - 0.025, 0);
+        B(0.03, 0.07, D, M.steel, s * (W / 2 - 0.015), 0.045, 0);
+      }
+      glassBox(t, H, D, -W / 2, H / 2, 0);
+      glassBox(t, H, D, W / 2, H / 2, 0);
+      glassBox(W, t, D, 0, H, 0);
+      glassBox(W, H, t, 0, H / 2, -D / 2);
+      for (const s of [-1, 1]) {
+        const ex = s * (W / 2 + 0.11),
+          hh = Math.min(H * 0.62, 1.1),
+          hx = ex + s * 0.045;
+        B(0.22, H, 0.04, U2 ? M.black : M.chassis, ex, H / 2, fz - 0.02);
+        outline(0.22, H, 0.04, ex, H / 2, fz - 0.02, M.edgeSoft);
+        B(0.04, hh, 0.04, M.alu, hx, H / 2, fz + 0.14);
+        Cs(0.02, 0.12, M.alu, hx, H / 2 + hh / 2 - 0.03, fz + 0.08, null, Math.PI / 2, 0, 0);
+        Cs(0.02, 0.12, M.alu, hx, H / 2 - hh / 2 + 0.03, fz + 0.08, null, Math.PI / 2, 0, 0);
+      }
+      const cx = W / 2 + 0.055;
+      C(0.035, 0.03, M.blue, cx, H / 2 + 0.12, fz + 0.01, null, Math.PI / 2, 0, 0);
+      B(0.024, 0.024, 0.012, M.led, cx, H / 2 + 0.01, fz + 0.006);
+    }
+    if (U2) {
+      // Alphacool ES 2U 기준: 검정 전면 · 좌우 5.25" 베이(3.5" HDD 어댑터) · 가운데 2.5" 브래킷 6개
+      if (!real) {
+        plane(W - 0.1, H - 0.1, meshMat(W - 0.1, H - 0.1, 0x2a2c33), 0, H / 2, fz - 0.005);
+        for (const s of [-1, 1])
+          for (let r = 0; r < 2; r++) B(1.46, 0.38, 0.02, M.black, s * (W / 2 - 0.85), 0.07 + 0.2 + r * 0.41, fz + 0.002);
+      }
+      CAT = 'disk';
+      for (let i = 0; i < 6; i++) bay(F(-0.57 + 0.19 * (i + 0.5), 0.06 + 0.35, fz), 0.19, 0.62, i < cfg.disk);
+      if (cfg.hdd) {
+        // 전면 좌우 5.25" 베이 영역(깊이 147mm) 안에만 3.5" HDD를 세 칸씩 적층 - 실제 섀시 칸막이와 겹치지 않게 약간 안쪽으로
+        const pos = [];
+        for (const s2 of [-1, 1]) for (let k = 0; k < 2; k++) pos.push([s2 * (W / 2 - 0.9), 0.25 + k * 0.41, fz - 0.12]); // 5.25" 베이 4개 × 3.5" HDD 1개씩
+        pos.slice(0, cfg.hdd).forEach((p) => hdd(F(p[0], p[1], p[2] - 0.02)));
+      }
+    } else {
+      const bw = 0.19,
+        bh = 0.75,
+        nB = 8,
+        bx1 = W / 2 - 0.06;
+      if (!real)
+        plane(
+          W - 0.1 - nB * bw,
+          H - 0.1,
+          meshMat(W - 0.1 - nB * bw, H - 0.1),
+          -W / 2 + 0.05 + (W - 0.1 - nB * bw) / 2,
+          H / 2,
+          fz - 0.005,
+        );
+      CAT = 'disk';
+      for (let i = 0; i < nB; i++) bay(F(bx1 - bw * (i + 0.5), 0.065 + bh / 2, fz), bw, bh, i < cfg.disk);
+      CAT = 'chassis';
+      if (!real)
+        plane(
+          nB * bw,
+          H - bh - 0.16,
+          meshMat(nB * bw, H - bh - 0.16),
+          bx1 - (nB * bw) / 2,
+          0.065 + bh + 0.05 + (H - bh - 0.16) / 2,
+          fz - 0.005,
+        );
+      CAT = 'disk';
+      if (cfg.hdd) {
+        const hx = U === 4 ? -W / 2 + 0.85 : -W / 2 + 2.25,
+          hz = fz - 0.25;
+        for (const s of [-1, 1])
+          B(
+            0.03,
+            Math.min(H - 0.1, 0.2 + cfg.hdd * 0.28),
+            1.55,
+            M.steel,
+            hx + s * 0.53,
+            0.05 + Math.min(H - 0.1, 0.2 + cfg.hdd * 0.28) / 2,
+            hz - 0.76,
+          );
+        for (let i = 0; i < cfg.hdd; i++) hdd(F(hx, 0.18 + i * 0.28, hz));
+      }
+    }
+    // 파워: 4U 이상은 ATX(전면 왼쪽), 2U는 240 × 100 × 70mm 2U 파워(뒤쪽 오른쪽)
+    CAT = 'board';
+    // 실제 섀시 후면 개구부 기준: 2U는 오른쪽 뒤 2U 파워, 4U는 오른쪽 뒤 세로 ATX 파워 (CAD 후면 분석)
+    const ALN = U === 2 || U === 4;
+    if (U2) psu(F(W / 2 - 0.55, 0.41, -D / 2 + 1.25), 1.0, 0.7, 2.4);
+    else if (U === 4) psu(F(1.63, 0.86, -D / 2 + 0.85), 0.8, 1.45, 1.6);
+    else psu(F(-W / 2 + 0.9, 0.5, fz - 1.3, 0, Math.PI, 0), 1.5, 0.86, 2.0);
+    // 팬 · 라디에이터: 2U는 3 × 80mm 팬 브래킷 + 4 × 80mm 라디에이터 프레임
+    CAT = 'cool';
+    const fzw = U2 ? fz - 3.3 : U === 4 ? fz - 3.2 : fz - 2.05,
+      radZ = fzw - 0.3,
+      fs = U2 ? 0.8 : 1.2,
+      per = 3,
+      rows = [];
+    if (U2) rows.push(0.06 + fs / 2);
+    else {
+      const nRow = Math.max(1, Math.floor((H - 0.1) / 1.25));
+      for (let r = 0; r < nRow; r++) rows.push(0.07 + fs / 2 + r * 1.25);
+    }
+    const pitch = U2 ? 0.95 : (W - 0.4) / per,
+      fx0 = U2 ? -pitch : -W / 2 + 0.2 + pitch * 0.5;
+    rows.forEach((y) => {
+      for (let i = 0; i < per; i++) fan(F(fx0 + pitch * i, y, fzw), fs, 0.25, false, true);
+    });
+    B(W - 0.04, 0.03, 0.34, M.steel, 0, 0.035, fzw);
+    let radL, radR;
+    if (w !== 'none')
+      rows.forEach((y) => {
+        const rp = radiator(F(0, y, radZ), U2 ? 3.5 : W - 0.3, fs, 0.3);
+        radL = rp.L;
+        radR = rp.R;
+      });
+    // 메인보드 SSI-EEB 330 × 305mm
+    CAT = 'board';
+    const bwid = 3.3,
+      bdep = 3.05,
+      bxR = U2 ? 1.0 : U === 4 ? 1.15 : W / 2 - 0.15,
+      bxL = bxR - bwid,
+      zb0 = -D / 2 + 0.1,
+      zb1 = zb0 + bdep;
+    B(bwid, 0.02, bdep, M.pcb, (bxL + bxR) / 2, 0.08, (zb0 + zb1) / 2);
+    {
+      const bc = (bxL + bxR) / 2,
+        zc = (zb0 + zb1) / 2,
+        sxc = (ALN ? bxR - 0.75 : bxL + 1.05) - bc;
+      boardDetail(F(bc, 0.09, zc), bwid, bdep, [
+        [sxc - 0.9, sxc + 0.9, -bdep / 2, bdep / 2],
+        [ALN ? -bwid / 2 : bwid / 2 - 1.7, ALN ? -bwid / 2 + 1.7 : bwid / 2, -bdep / 2, bdep / 2 - 0.5],
+      ]);
+    }
+    B(1.56, U2 ? 0.42 : 0.44, 0.01, M.steel, ALN ? bxR - 0.85 : bxL + 0.6, ALN ? 0.32 : 0.35, -D / 2 - 0.006);
+    // CPU · RAM
+    const scx = ALN ? bxR - 0.75 : bxL + 1.05,
+      czs = cfg.sockets === 2 ? [zb0 + 0.9, zb0 + 2.3] : [zb0 + 1.5],
+      cpuPorts = [],
+      hh = U2 ? 0.28 : Math.min(1.2, H - 0.35);
+    const nPer = Math.min(8, Math.max(2, Math.round(cfg.ram / 64 / czs.length)));
+    czs.forEach((z) => {
+      CAT = 'cpu';
+      const P = F(scx, 0.09, z);
+      socket(P);
+      if (wCpu) cpuPorts.push(cpuWater(P));
+      else cpuAirServer(P, hh);
+      CAT = 'ram';
+      for (let k = 0; k < 4; k++)
+        for (const sd of [-1, 1]) {
+          const Q = F(scx + sd * (0.5 + k * 0.075), 0.09, z);
+          dimmSlot(Q);
+          if (k * 2 + (sd > 0 ? 1 : 0) < nPer) dimm(Q, false);
+        }
+      CAT = 'board';
+      if (!ALN) {
+        B(0.2, 0.1, 0.7, M.dark, scx - 0.95, 0.14, z);
+        for (let f = 0; f < 6; f++) B(0.2, 0.1, 0.006, M.alu, scx - 0.95, 0.24, z - 0.3 + f * 0.12);
+      }
+    });
+    // GPU
+    CAT = 'gpu';
+    const lk = cfg.gpuLook || 'axial',
+      ax = lk === 'axial',
+      len = ax ? 3.04 : 2.67,
+      gh = wGpu ? 1.11 : ax ? 1.37 : 1.11,
+      th = wGpu || cfg.gpuSlim ? 0.22 : 0.38;
+    const slotX = ALN ? (i) => bxR - 1.76 - i * 0.2032 : (i) => bxR - 0.3 - i * 0.2032,
+      gz = -D / 2 + 0.06 + len / 2,
+      gPorts = [],
+      cardX = [],
+      occ = new Set();
+    for (let i = 0; i < 7; i++) {
+      B(0.075, 0.06, 0.89, M.black, slotX(i), 0.12, -D / 2 + 0.56);
+      B(0.012, 0.055, 0.85, M.gold, slotX(i), 0.121, -D / 2 + 0.56);
+    }
+    if (!U2)
+      for (let i = 0; i < 7; i++) {
+        const sx = slotX(i) + (ALN ? -0.1 : 0.1);
+        B(0.17, 1.0, 0.012, M.steel, sx, 0.62, -D / 2 - 0.008);
+        for (let k = 0; k < 6; k++) B(0.08, 0.06, 0.014, M.black, sx, 0.3 + k * 0.12, -D / 2 - 0.01);
+      }
+    let gBox = null;
+    if (U2 && lk === 'lp') {
+      // 로우프로파일 카드는 7개 슬롯에 세워서 장착
+      for (let i = 0; i < cfg.count; i++) {
+        const x = slotX(i) - 0.1;
+        gPorts.push(
+          gpu(F(x, 0.15 + 0.345, -D / 2 + 0.06 + 0.84), { len: 1.68, h: 0.69, th: 0.2, water: false, style: 'passive' }),
+        );
+      }
+      {
+        const nUsed = Math.min(7, cfg.count + (cfg.netCards || 0));
+        gBox = { x0: slotX(nUsed - 1) - 0.3, x1: slotX(0) + 0.1, z0: -D / 2 - 0.1, z1: -D / 2 + 1.85 };
+      } // 로우프로파일 카드 영역(높이 · 길이 전체) → 배관 금지 구역
+      CAT = 'net';
+      for (let n = 0; n < (cfg.netCards || 0) && cfg.count + n < 7; n++)
+        nic(F(slotX(cfg.count + n) - 0.05, 0.15 + 0.345, -D / 2 + 0.06 + 0.84), cfg.net);
+    } else if (U2) {
+      // 2U: 90° 라이저(리어 패널 3 × PCIe 90°)로 GPU를 눕혀 층층이 장착
+      const gh2 = 1.11,
+        th2 = wGpu || cfg.gpuSlim ? 0.22 : 0.36,
+        xg = bxL + 0.2 + gh2 / 2;
+      B(0.1, 0.1 + cfg.count * (th2 + 0.02), 0.9, M.dark, slotX(0), 0.1 + (cfg.count * (th2 + 0.02)) / 2, -D / 2 + 0.56);
+      for (let l = 0; l < cfg.count; l++)
+        gPorts.push(
+          gpu(F(xg, 0.12 + th2 / 2 + l * (th2 + 0.02), gz, 0, 0, -Math.PI / 2), {
+            len,
+            h: gh2,
+            th: th2,
+            water: wGpu,
+            style: ax ? 'blower' : lk,
+          }),
+        );
+      gBox = {
+        x0: xg - gh2 / 2 - 0.08,
+        x1: xg + gh2 / 2 + (wGpu ? 0.5 : 0.08),
+        z0: gz - len / 2 - 0.08,
+        z1: gz + len / 2 + 0.08,
+      };
+      // Alphacool 3 × PCIe 90° 리어 패널(25061): 세로 로우프로파일 슬롯 7개 자리를 가로 슬롯 3개로 교체
+      B(1.46, 0.74, 0.012, M.steel, xg, 0.45, -D / 2 - 0.004);
+      for (let l = 0; l < 3; l++)
+        B(gh2 + 0.04, 0.17, 0.02, l < cfg.count ? M.alu : M.dark, xg, 0.12 + th2 / 2 + l * (th2 + 0.02), -D / 2 - 0.014);
+    } else {
+      const used = cfg.gpuSlim
+        ? [0, 1, 2, 3, 4, 5, 6].slice(0, cfg.count)
+        : cfg.count === 1
+          ? [0]
+          : cfg.count === 2
+            ? [0, 2]
+            : [0, 2, 4, 6];
+      used.forEach((i) => {
+        occ.add(i);
+        if (!cfg.gpuSlim) occ.add(i + 1);
+        const x = ALN ? slotX(i) - th / 2 + 0.03 : slotX(i) + th / 2 - 0.03;
+        cardX.push(x);
+        gPorts.push(gpu(F(x, 0.15 + gh / 2, gz), { len, h: gh, th, water: wGpu, style: ax ? 'axial' : lk }));
+      });
+      CAT = 'net';
+      if (cfg.netCards) {
+        [6, 5, 4, 3, 2]
+          .filter((i) => !occ.has(i))
+          .slice(0, cfg.netCards)
+          .forEach((i) => nic(F(slotX(i) + (ALN ? -0.05 : 0.05), 0.15 + 0.345, -D / 2 + 0.06 + 0.84), cfg.net));
+      }
+    }
+    // 수냉 루프
+    CAT = 'cool';
+    const OBS = [];
+    if (U2) {
+      if (gBox) OBS.push(gBox);
+      OBS.push(
+        { x0: W / 2 - 1.1, x1: W / 2, z0: -D / 2, z1: -D / 2 + 2.5 },
+        { x0: -W / 2, x1: W / 2, z0: radZ - 0.2, z1: fzw + 0.25 },
+      );
+    }
+    if (w !== 'none') {
+      const res = U2
+          ? reservoir(W / 2 - 0.5, 0.02, -D / 2 + 2.95, 0.3)
+          : U === 4
+            ? reservoir(0, 0.02, fzw + 1.2, Math.min(1.0, H - 0.6))
+            : reservoir(-W / 2 + 0.45, 0.02, zb1 + 0.45, Math.min(1.0, H - 0.6)),
+        Y0 = H - 0.07;
+      let k = 0;
+      const route = (A, Bq) => {
+        const a = ext(A),
+          e = ext(Bq),
+          ln = k++;
+        if (U2) {
+          const Y = [0.6, 0.69, 0.78][ln % 3],
+            r = 0.06,
+            hit = (x0, z0, x1, z1) =>
+              OBS.some(
+                (o) =>
+                  Math.max(x0, x1) > o.x0 - r &&
+                  Math.min(x0, x1) < o.x1 + r &&
+                  Math.max(z0, z1) > o.z0 - r &&
+                  Math.min(z0, z1) < o.z1 + r,
+              );
+          const C = [[[e.x, a.z]], [[a.x, e.z]]];
+          OBS.forEach((o) => {
+            for (const xc of [o.x1 + 0.16 + ln * 0.05, o.x0 - 0.16 - ln * 0.05])
+              C.push([
+                [xc, a.z],
+                [xc, e.z],
+              ]);
+            for (const zc of [o.z1 + 0.16 + ln * 0.05, o.z0 - 0.16 - ln * 0.05])
+              C.push([
+                [a.x, zc],
+                [e.x, zc],
+              ]);
+          });
+          const len2 = (c) => {
+            let q = [a.x, a.z],
+              L = 0;
+            [...c, [e.x, e.z]].forEach((t) => {
+              L += Math.abs(t[0] - q[0]) + Math.abs(t[1] - q[1]);
+              q = t;
+            });
+            return L;
+          };
+          const ok = (c) => {
+            let q = [a.x, a.z];
+            for (const t of [...c, [e.x, e.z]]) {
+              if (hit(q[0], q[1], t[0], t[1])) return false;
+              q = t;
+            }
+            return true;
+          };
+          const best = C.filter(ok).sort((m, n) => len2(m) - len2(n))[0] || C[0];
+          pipe(A, [[a.x, Y, a.z], ...best.map((t) => [t[0], Y, t[1]]), [e.x, Y, e.z]], Bq, 0.032);
+        } else {
+          const Y = Y0 - (ln % 3) * 0.09;
+          pipe(
+            A,
+            [
+              [a.x, Y, a.z],
+              [e.x, Y, a.z],
+              [e.x, Y, e.z],
+            ],
+            Bq,
+          );
+        }
+      };
+      let prev = res.a;
+      if (wCpu) {
+        cpuPorts.forEach((cp) => {
+          route(prev, cp[0]);
+          prev = cp[1];
+        });
+      }
+      route(prev, radL);
+      if (wGpu && U2 && gPorts.flat().filter(Boolean).length) {
+        // 눕힌 카드는 블록끼리 직렬 연결
+        // 층층이 쌓인 카드 블록은 끝단의 세로 브릿지 하나로 병렬 연결 (튜브 교차 없음)
+        const ps = gPorts.flat().filter(Boolean);
+        ps.forEach(fitting);
+        const bx = ps[0].p.x + ps[0].d.x * 0.2,
+          ys = ps.map((q) => q.p.y),
+          y0b = Math.min(...ys) - 0.06,
+          y1b = Math.max(...ys) + 0.06,
+          zA = Math.min(...ps.map((q) => q.p.z)),
+          zB = Math.max(...ps.map((q) => q.p.z));
+        for (const zz of [zA, zB]) {
+          B(0.14, Math.min(y1b, H - 0.06) - y0b, 0.14, M.acryl, bx, (y0b + Math.min(y1b, H - 0.06)) / 2, zz);
+          B(0.05, y1b - y0b - 0.04, 0.05, M.coolant, bx, (y0b + y1b) / 2, zz);
+        }
+        const sx = V(1, 0, 0),
+          py = Math.min(y1b - 0.08, H - 0.2),
+          tA = { p: V(bx + 0.07, py, zA), d: sx },
+          tB = { p: V(bx + 0.07, py, zB), d: sx };
+        route(radR, tA);
+        route(tB, res.b);
+      } else if (wGpu && gPorts.flat().filter(Boolean).length) {
+        const ps = gPorts.flat().filter(Boolean);
+        ps.forEach(fitting);
+        const py = Math.max(...ps.map((q) => q.p.y)),
+          x0m = Math.min(...ps.map((q) => q.p.x)) - 0.15,
+          x1m = Math.max(...ps.map((q) => q.p.x)) + 0.15,
+          mz = ps.reduce((a, q) => a + q.p.z, 0) / ps.length,
+          my = py + 0.14;
+        B(x1m - x0m, 0.16, 0.34, M.acryl, (x0m + x1m) / 2, my, mz);
+        B(x1m - x0m - 0.06, 0.06, 0.12, M.coolant, (x0m + x1m) / 2, my, mz);
+        const fwd = V(0, 0, 1),
+          A = { p: V(x0m + 0.1, my, mz + 0.17), d: fwd },
+          Bq = { p: V(x1m - 0.1, my, mz + 0.17), d: fwd };
+        route(radR, A);
+        route(Bq, res.side(Math.max(0.4, res.top - 0.25)));
+      } else route(radR, res.b);
+    }
+    flush();
+  }
+  // 치수선 (라벨 캔버스 텍스처는 재빌드 시 해제)
+  function label(txt) {
+    const c = document.createElement('canvas');
+    c.width = 512;
+    c.height = 128;
+    const x = c.getContext('2d');
+    x.fillStyle = 'rgba(11,11,14,.9)';
+    x.strokeStyle = 'rgba(201,204,255,.55)';
+    x.lineWidth = 3;
+    x.beginPath();
+    x.roundRect(14, 18, 484, 92, 46);
+    x.fill();
+    x.stroke();
+    x.fillStyle = '#fff';
+    x.font = '600 60px "Barlow Condensed", sans-serif';
+    x.textAlign = 'center';
+    x.textBaseline = 'middle';
+    x.fillText(txt, 256, 66);
+    const tx = new THREE.CanvasTexture(c);
+    tx.colorSpace = THREE.SRGBColorSpace;
+    const s = new THREE.Sprite(new THREE.SpriteMaterial({ map: tx, depthTest: false, transparent: true }));
+    s.scale.set(1.5, 0.375, 1);
+    s.renderOrder = 10;
+    s.userData.own = true;
+    return s;
+  }
+  function dimLine(a, b, off, txt) {
+    const A = new THREE.Vector3(...a).add(off),
+      B = new THREE.Vector3(...b).add(off),
+      tick = off.clone().normalize().multiplyScalar(0.12);
+    const l1 = new THREE.LineSegments(
+      new THREE.BufferGeometry().setFromPoints([
+        A,
+        B,
+        A.clone().sub(tick),
+        A.clone().add(tick),
+        B.clone().sub(tick),
+        B.clone().add(tick),
+      ]),
+      M.dim,
+    );
+    l1.userData.own = true;
+    dimG.add(l1);
+    const l2 = new THREE.LineSegments(
+      new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(...a), A, new THREE.Vector3(...b), B]),
+      M.dimExt,
+    );
+    l2.userData.own = true;
+    dimG.add(l2);
+    const s = label(txt);
+    s.position.copy(A).add(B).multiplyScalar(0.5).add(off.clone().normalize().multiplyScalar(0.3));
+    dimG.add(s);
+  }
+  function drawDims() {
+    const { w, h, d } = bounds,
+      y0 = S.form === 'tower' ? 0.05 : 0,
+      wTxt = (S.form === 'rack' ? 482.6 : S.w) + ' mm';
+    dimLine([-w / 2, y0, d / 2], [w / 2, y0, d / 2], new THREE.Vector3(0, 0, 0.55), wTxt);
+    dimLine([-w / 2, y0, d / 2], [-w / 2, y0 + h, d / 2], new THREE.Vector3(-0.55, 0, 0), S.h + ' mm');
+    dimLine([w / 2, y0, d / 2], [w / 2, y0, -d / 2], new THREE.Vector3(0.55, 0, 0), S.d + ' mm');
+  }
+  // 지운 파트 해제: 공유 지오메트리/재질은 남기고 개별 생성물만 dispose
+  function clear(g) {
+    g.traverse((o) => {
+      if (o.userData.own) {
+        o.geometry?.dispose();
+        if (o.material?.map) {
+          o.material.map.dispose();
+          o.material.dispose();
+        }
+      }
+      if (o.isInstancedMesh) o.dispose();
+    });
+    g.clear();
+  }
+
+  const VIEWS = {
+    iso: [1, 0.6, 1.05],
+    top: [0.18, 1.5, 0.5],
+    front: [0, 0.2, 1.4],
+    side: [1.4, 0.26, 0.02],
+    rear: [-0.45, 0.5, -1.25],
+    bottom: [0.7, -0.95, 0.85],
+  };
+  function setView(v, instant) {
+    if (!camera) return;
+    lastView = v || lastView;
+    const diag = Math.hypot(
+        bounds.w + (bounds.ext || 0) * 1.2,
+        Math.max(bounds.h, bounds.ext ? 3.95 : 0) * 0.8,
+        bounds.d,
+      ),
+      r =
+        diag *
+        (canvas.clientWidth < 640 ? (S && S.form === 'rack' ? 2.5 : 2.2) : 2.35 * (S && S.form === 'tower' ? 1.15 : 1)),
+      d0 = VIEWS[v] || VIEWS.iso,
+      d = MIR ? [-d0[0], d0[1], d0[2]] : d0; // 실제 타워(MIR)는 화면 전체가 x로 뒤집혀 있으므로 카메라도 반대편에서
+    controls.minDistance = diag * 0.9;
+    controls.maxDistance = diag * 3.4;
+    camTo
+      .set(...d)
+      .normalize()
+      .multiplyScalar(r)
+      .add(target);
+    controls.target.copy(target);
+    if (instant || reduce) {
+      camera.position.copy(camTo);
+      camT = 1;
+      controls.update();
+      dirty = true;
+      return;
+    }
+    camFrom.copy(camera.position);
+    camT = 0;
+  }
+
+  // AO: 반투명 유리 · 아크릴 · 라벨은 AO 계산에서 제외 (유리 뒤가 어두워지지 않게)
+  class SolidAO extends GTAOPass {
+    overrideVisibility() {
+      const c = this._visibilityCache;
+      this.scene.traverse((o) => {
+        c.set(o, o.visible);
+        if (o.isPoints || o.isLine || o.isSprite || (o.material && o.material.transparent)) o.visible = false;
+      });
+    }
+    render(r, w, rb, d, m) {
+      const bg = this.scene.background;
+      this.scene.background = null;
+      this._renderGBuffer = true;
+      super.render(r, w, rb, d, m);
+      this.scene.background = bg;
+    }
+  }
+  // 설치 애니메이션: 부품을 위치(x → z) 순서로 하나씩 내려 장착 - InstancedMesh는 인스턴스 단위로
+  // 설치 방향 (실제 조립 방식)
+  //  · 저장장치: 전면 베이에서 앞 → 안으로 (z)
+  //  · 타워 나머지: 옆판을 열고 측면에서 (x), 슬롯 부품은 위 슬롯부터 아래로 순서대로
+  //  · 랙 나머지: 상판을 열고 위에서 아래로 (y)
+  function dropAxis(c) {
+    return c === 'disk' ? [14, 1] : S.form === 'tower' ? [12, 1] : [13, 1];
+  }
+  // 수량만 바뀐 경우: 이미 장착된 부품은 그대로 두고 새로 추가된 부품만 장착 애니메이션
+  let PREV = null;
+  const posKey = (g, x, y, z) => g.uuid + '|' + Math.round(x * 50) + ',' + Math.round(y * 50) + ',' + Math.round(z * 50);
+  function snapshot(cat) {
+    const set = new Set(),
+      m4 = new THREE.Matrix4();
+    root.children.forEach((o) => {
+      if (o.userData.cat !== cat) return;
+      if (o.isInstancedMesh) {
+        const base = DROPS.find((d) => d.o === o && d.base);
+        for (let i = 0; i < o.count; i++) {
+          if (base) m4.copy(base.base[i]);
+          else o.getMatrixAt(i, m4);
+          set.add(posKey(o.geometry, m4.elements[12], m4.elements[13], m4.elements[14]));
+        }
+      } else if (o.geometry) {
+        o.updateMatrixWorld();
+        const c = new THREE.Box3().setFromObject(o).getCenter(new THREE.Vector3());
+        set.add(posKey({ uuid: 'mesh' + Math.round(c.length() * 0) }, c.x, c.y, c.z));
+      }
+    });
+    return set;
+  }
+  function startDrop(cat) {
+    DROPS = [];
+    const all = cat === 'all',
+      items = [];
+    root.children.forEach((o) => {
+      const c = o.userData.cat;
+      if (!c || (all ? c === 'chassis' : c !== cat)) return;
+      const [ax, sg] = dropAxis(c),
+        ent = { o, ax, sg, disk: c === 'disk' };
+      if (o.isInstancedMesh) {
+        const base = [],
+          m4 = new THREE.Matrix4();
+        for (let i = 0; i < o.count; i++) {
+          o.getMatrixAt(i, m4);
+          base.push(m4.clone());
+          items.push({
+            x: m4.elements[12],
+            y: m4.elements[13],
+            z: m4.elements[14],
+            disk: ent.disk,
+            old: !!(PREV && PREV.has(posKey(o.geometry, m4.elements[12], m4.elements[13], m4.elements[14]))),
+          });
+        }
+        o.frustumCulled = false;
+        ent.base = base;
+        ent.k0 = items.length - base.length;
+      } else {
+        o.updateMatrixWorld();
+        const b = new THREE.Box3().setFromObject(o),
+          c3 = b.getCenter(new THREE.Vector3());
+        items.push({
+          x: c3.x,
+          y: c3.y,
+          z: c3.z,
+          disk: ent.disk,
+          old: !!(PREV && o.geometry && PREV.has(posKey({ uuid: 'mesh0' }, c3.x, c3.y, c3.z))),
+        });
+        ent.p0 = o.position.clone();
+        ent.k0 = items.length - 1;
+      }
+      DROPS.push(ent);
+    });
+    PREV = null;
+    if (!items.length) return;
+    const fresh = items.filter((p) => !p.old);
+    if (!fresh.length) {
+      DROPS = [];
+      return;
+    }
+    const rng = (f) => {
+      let a = Infinity,
+        b = -Infinity;
+      fresh.forEach((p) => {
+        const v = f(p);
+        a = Math.min(a, v);
+        b = Math.max(b, v);
+      });
+      return (v) => (v - a) / (b - a || 1);
+    };
+    const nx = rng((p) => p.x),
+      ny = rng((p) => p.y),
+      nz = rng((p) => p.z);
+    const span = all ? 1.1 : Math.min(0.55, 0.12 * fresh.length);
+    // 타워 · 저장장치: 위 → 아래 순서 / 랙: 왼쪽 앞 → 오른쪽 뒤 순서
+    DROP_D = items.map((p) =>
+      p.old
+        ? -99
+        : (S.form === 'tower' || p.disk ? (1 - ny(p.y)) * 0.8 + nx(p.x) * 0.2 : nx(p.x) * 0.65 + (1 - nz(p.z)) * 0.35) *
+          span,
+    );
+    DROP_DIST = { 12: bounds.w * 1.6 + 1.2, 13: all ? bounds.h * 0.9 + 0.9 : bounds.h * 1.1 + 0.8, 14: 1.8 };
+    dropT = 0;
+    dropEnd = span + 0.5;
+    applyDrop();
+  }
+  const _dm = new THREE.Matrix4();
+  function applyDrop() {
+    const ease = (k) => 1 - Math.pow(1 - k, 3),
+      off = (i, ax) => (1 - ease(Math.min(1, Math.max(0, (dropT - DROP_D[i]) / 0.5)))) * DROP_DIST[ax];
+    DROPS.forEach((d) => {
+      if (d.base) {
+        d.base.forEach((m, i) => {
+          _dm.copy(m);
+          _dm.elements[d.ax] += off(d.k0 + i, d.ax) * d.sg;
+          d.o.setMatrixAt(i, _dm);
+        });
+        d.o.instanceMatrix.needsUpdate = true;
+      } else {
+        d.o.position.copy(d.p0);
+        d.o.position.setComponent(d.ax - 12, d.p0.getComponent(d.ax - 12) + off(d.k0, d.ax) * d.sg);
+      }
+    });
+  }
+  let DROP_D = [],
+    dropEnd = 1,
+    DROP_DIST = { 12: 1, 13: 1, 14: 1 };
+  let composer = null,
+    aoPass = null,
+    key = null,
+    DROPS = [],
+    dropT = 1,
+    dropH = 1,
+    powered = false,
+    poweredWater = false;
+  // 선택 단계 강조: 해당 부품은 블루로 발광, 나머지는 반투명 회색으로 물러남
+  const HL = new Map(),
+    GH = new Map(),
+    HLC = new THREE.Color(0x4f5cff),
+    GHC = new THREE.Color(0xb8bccb);
+  let focusCat = null;
+  function hlMat(m) {
+    let x = HL.get(m);
+    if (x) return x;
+    x = m.clone();
+    if (x.color) x.color.lerp(HLC, 0.55);
+    if ('emissive' in x) {
+      x.emissive = new THREE.Color(0x2b38ff);
+      x.emissiveIntensity = 0.55;
+    }
+    if (x.transparent) x.opacity = Math.min(0.5, m.opacity * 3);
+    HL.set(m, x);
+    return x;
+  }
+  function ghMat(m) {
+    let x = GH.get(m);
+    if (x) return x;
+    x = m.clone();
+    x.transparent = true;
+    x.opacity = (m.transparent ? m.opacity : 1) * 0.26;
+    x.depthWrite = false;
+    if (x.color) x.color.lerp(GHC, 0.6);
+    if ('emissiveIntensity' in x) x.emissiveIntensity = 0;
+    GH.set(m, x);
+    return x;
+  }
+  function applyFocus() {
+    if (!root) return;
+    root.traverse((o) => {
+      if (!o.isMesh || !o.userData.cat || o.userData.keep) return;
+      const base = o.userData.base || (o.userData.base = o.material);
+      o.material = !focusCat ? base : o.userData.cat === focusCat ? hlMat(base) : ghMat(base);
+      const tr = o.material.transparent;
+      o.castShadow = o.receiveShadow = !tr;
+      o.renderOrder = tr ? 2 : 0;
+    });
+    dirty = true;
+  }
+  window.YJ3D = {
+    ready: true,
+    init(cv) {
+      canvas = cv;
+      try {
+        renderer = new THREE.WebGLRenderer({ canvas, antialias: true, powerPreference: 'high-performance' });
+      } catch (e) {
+        window.YJ.noGL();
+        return;
+      }
+      renderer.setPixelRatio(Math.min(devicePixelRatio || 1, mobile ? 1.5 : 2));
+      renderer.toneMapping = THREE.NeutralToneMapping;
+      renderer.toneMappingExposure = 1.0;
+      renderer.shadowMap.enabled = true;
+      renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+      scene = new THREE.Scene();
+      // 스테이지 배경 (메인 히어로와 같은 블루 → 블랙 그라데이션)
+      const bc = document.createElement('canvas');
+      bc.width = bc.height = 512;
+      const bx = bc.getContext('2d');
+      const bgG = bx.createRadialGradient(369, 604, 0, 369, 604, 560);
+      bgG.addColorStop(0, '#2f37d8');
+      bgG.addColorStop(0.34, '#161a63');
+      bgG.addColorStop(0.7, '#0b0b0e');
+      bgG.addColorStop(1, '#0b0b0e');
+      bx.fillStyle = bgG;
+      bx.fillRect(0, 0, 512, 512);
+      const bgT = new THREE.CanvasTexture(bc);
+      bgT.colorSpace = THREE.SRGBColorSpace;
+      scene.background = bgT;
+      const pm = new THREE.PMREMGenerator(renderer);
+      scene.environment = pm.fromScene(new RoomEnvironment(), 0.03).texture;
+      scene.environmentIntensity = 1.0;
+      pm.dispose();
+      camera = new THREE.PerspectiveCamera(30, 1, 0.5, 120);
+      controls = new OrbitControls(camera, canvas);
+      Object.assign(controls, {
+        enableDamping: true,
+        dampingFactor: 0.08,
+        enablePan: false,
+        maxPolarAngle: Math.PI * 0.97,
+        minPolarAngle: Math.PI * 0.03,
+      });
+      controls.addEventListener('change', () => {
+        dirty = true;
+      });
+      // 스튜디오 조명: 소프트 그림자 키라이트 + 뉴트럴 림
+      key = new THREE.DirectionalLight(0xffffff, 2.2);
+      key.castShadow = true;
+      key.shadow.mapSize.set(mobile ? 1024 : 2048, mobile ? 1024 : 2048);
+      key.shadow.bias = -0.0004;
+      key.shadow.normalBias = 0.02;
+      scene.add(key);
+      scene.add(key.target);
+      const rim = new THREE.DirectionalLight(0xdfe4ff, 0.9);
+      rim.position.set(-9, 5, -8);
+      scene.add(rim);
+      const ground = new THREE.Mesh(new THREE.PlaneGeometry(40, 40), new THREE.ShadowMaterial({ opacity: 0.45 }));
+      ground.rotation.x = -Math.PI / 2;
+      ground.position.y = 0.001;
+      ground.receiveShadow = true;
+      ground.name = 'shadow';
+      scene.add(ground);
+      const grid = new THREE.GridHelper(60, 60, 0x3a40a8, 0x22256a);
+      grid.material.transparent = true;
+      grid.material.opacity = 0.22;
+      scene.add(grid);
+      this._floor = [grid, ground];
+      root = new THREE.Group();
+      scene.add(root);
+      dimG = new THREE.Group();
+      scene.add(dimG);
+      // 앰비언트 오클루전 (데스크톱만, 모바일은 그림자까지만)
+      if (!mobile)
+        try {
+          composer = new EffectComposer(
+            renderer,
+            new THREE.WebGLRenderTarget(1, 1, { type: THREE.HalfFloatType, samples: 4 }),
+          );
+          composer.addPass(new RenderPass(scene, camera));
+          aoPass = new SolidAO(scene, camera, 1, 1);
+          aoPass.blendIntensity = 0.9;
+          aoPass.updateGtaoMaterial({
+            radius: 0.35,
+            distanceExponent: 1,
+            thickness: 1,
+            scale: 1.2,
+            samples: 16,
+            distanceFallOff: 1,
+          });
+          aoPass.updatePdMaterial({
+            lumaPhi: 10,
+            depthPhi: 2,
+            normalPhi: 3,
+            radius: 6,
+            radiusExponent: 1,
+            rings: 2,
+            samples: 16,
+          });
+          composer.addPass(aoPass);
+          composer.addPass(new OutputPass());
+        } catch (e) {
+          composer = null;
+        }
+      canvas.addEventListener('webglcontextlost', (e) => {
+        e.preventDefault();
+        window.YJ.noGL();
+      });
+      addEventListener('resize', () => this.resize());
+      renderer.setAnimationLoop(() => {
+        if (!isActive || document.hidden) return;
+        let moving = controls.update();
+        if (camT < 1) {
+          camT = Math.min(1, camT + 0.035);
+          camera.position.lerpVectors(camFrom, camTo, 1 - Math.pow(1 - camT, 3));
+          moving = true;
+        }
+        if (popT < 1) {
+          popT = Math.min(1, popT + 0.08);
+          root.scale.setScalar(0.985 + 0.015 * (1 - Math.pow(1 - popT, 3)));
+          moving = true;
+        }
+        if (dropT < dropEnd) {
+          dropT = Math.min(dropEnd, dropT + 0.022);
+          applyDrop();
+          if (dropT >= dropEnd)
+            DROPS.forEach((d) => {
+              if (d.base) d.o.computeBoundingSphere();
+            });
+          moving = true;
+        }
+        if (powered) {
+          const now = performance.now() / 1000;
+          SPIN.forEach((f) => {
+            f.o.rotation.z -= 0.42;
+          });
+          M.led.color.setHSL(0.38, 0.8, Math.sin(now * 9) > 0 ? 0.7 : 0.45);
+          if (poweredWater) M.coolant.emissiveIntensity = 0.35 + 0.25 * Math.sin(now * 3.2);
+          moving = true;
+        }
+        if (moving || dirty) {
+          const up = camera.position.y > 0.05;
+          this._floor.forEach((o) => {
+            o.visible = up;
+          });
+          if (composer) composer.render();
+          else renderer.render(scene, camera);
+          dirty = false;
+        }
+      });
+    },
+    build(size, cfg, w, drop) {
+      if (!renderer) return;
+      lastBuild = [size, cfg, w];
+      PREV = drop && drop !== 'all' ? snapshot(drop) : null;
+      S = size;
+      clear(root);
+      clear(dimG);
+      SPIN = [];
+      const wasMIR = MIR;
+      MIR = false;
+      root.scale.x = 1;
+      if (S.grp === 'diy') buildRackDIY(cfg, w);
+      else if (S.form === 'rack') buildRack(cfg, w);
+      else buildTower(cfg, w);
+      bounds.ext = 0;
+      let nvx = null;
+      if (cfg.nova) {
+        nvx = buildNova(cfg);
+        flush();
+        bounds.ext = nvx.extW;
+      }
+      applyFocus();
+      // 그림자 카메라를 모델 크기에 딱 맞춤
+      const r = Math.hypot(bounds.w, bounds.h, bounds.d) * 0.62,
+        sc = key.shadow.camera;
+      key.position.copy(target).add(
+        V(MIR ? -0.45 : 0.45, 1, 0.55)
+          .normalize()
+          .multiplyScalar(r * 3),
+      );
+      key.target.position.copy(target);
+      sc.left = sc.bottom = -r * 1.15;
+      sc.right = sc.top = r * 1.15;
+      sc.near = r * 0.5;
+      sc.far = r * 6;
+      sc.updateProjectionMatrix();
+      key.shadow.needsUpdate = true;
+      drawDims();
+      if (nvx) {
+        target.x += ((MIR ? 1 : -1) * nvx.extW) / 2;
+        target.y = Math.max(target.y, 1.3);
+      }
+      if (MIR !== wasMIR) setView(lastView, true); // 실제 타워 모델이 늦게 로드돼 화면 방향이 바뀌면 카메라도 맞춤
+      if (!reduce && drop) startDrop(drop);
+      dirty = true;
+    },
+    power(on, water) {
+      powered = on && !reduce;
+      poweredWater = water;
+      if (!on) {
+        M.coolant.emissiveIntensity = 0;
+        M.led.color.set(0xa9adff);
+      }
+      dirty = true;
+    },
+    focus(cat) {
+      focusCat = cat || null;
+      applyFocus();
+    },
+    setView,
+    setDims(on) {
+      if (dimG) {
+        dimG.visible = on;
+        dirty = true;
+      }
+    },
+    active(on) {
+      isActive = on;
+      dirty = true;
+    },
+    resize() {
+      if (!renderer) return;
+      const r = canvas.parentNode.getBoundingClientRect();
+      if (!r.width) return;
+      renderer.setSize(r.width, r.height, false);
+      camera.aspect = r.width / r.height;
+      camera.fov = r.width < 640 ? 40 : 30;
+      if (r.width >= 1080) camera.setViewOffset(r.width, r.height, -r.width * 0.07, -r.height * 0.07, r.width, r.height);
+      else camera.setViewOffset(r.width, r.height, 0, -r.height * 0.1, r.width, r.height);
+      camera.updateProjectionMatrix();
+      if (composer) {
+        composer.setPixelRatio(renderer.getPixelRatio());
+        composer.setSize(r.width, r.height);
+      }
+      dirty = true;
+    },
+    info() {
+      return renderer
+        ? {
+            calls: renderer.info.render.calls,
+            geos: renderer.info.memory.geometries,
+            tex: renderer.info.memory.textures,
+            ao: !!composer,
+          }
+        : null;
+    },
+  };
+  (document.fonts ? document.fonts.ready : Promise.resolve()).then(() => window.YJ.on3D());
+</script>
+</body>
+</html>
